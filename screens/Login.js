@@ -12,7 +12,7 @@ const Login = () => {
     <StyledContainer>
       <InnerContainer>
         <PageLogo resizeMode = "cover" source = {require('C:\Users\nickp\App Development\FitTrack\assets\LoginRegister Backsplash.jpg')}/>
-        <PageTitle> FitTrack </PageTitle>
+        <PageTitle> FitTrack One</PageTitle>
       </InnerContainer>
     </StyledContainer>
 
