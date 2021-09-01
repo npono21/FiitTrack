@@ -15,7 +15,7 @@ export const Colors = {
 const {primary, secondary, tertiary, darkLight, brand, green, red} = Colors;
 
 export const StyledContainer = styled.View`
-  felx: 1;
+  flex: 1;
   padding: 25px;
   background-color: ${primary};
 `;
@@ -27,14 +27,14 @@ export const InnerContainer = styled.View`
 `;
 
 export const PageLogo = styled.Image`
-  width: 250 px;
-  height: 200 px;
+  width: 250px;
+  height: 200px;
 `;
 
 export const PageTitle = styled.Text`
   font-size: 30px;
-  text-allign: center;
+  text-align: center;
   font-weight: bold;
   color: ${brand};
-  pading: 10px;
+  padding: 10px;
 `;
