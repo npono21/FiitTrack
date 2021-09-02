@@ -34,7 +34,7 @@ const Login = () => {
         <SubTitle>Account Login</SubTitle>
 
         <Formik
-          intialValues = {{email: '', password: ''}}
+          initialValues = {{email: '', password: ''}}
           onSubmit = {(values) => {
             console.log(values);
           }}
@@ -42,13 +42,13 @@ const Login = () => {
           {({handleChange, handleBlur, handleSubmit, values}) => (
           <StyledFormArea>
               <MyTextInput 
-                lable = "Email Address"
+                label = "Email Address"
                 icon = "mail"
                 placeholder = "nickpon123@gmail.com"
                 placeholderTextColor = {darkLight}
                 onChangeText = {handleChange('email')}
                 onBlur = {handleBlur('email')}
-                //value = {values.email}
+                value = {values.email}
                 keyboardType = 'email-address'
               />
           </StyledFormArea>

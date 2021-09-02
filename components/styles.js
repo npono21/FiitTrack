@@ -52,9 +52,9 @@ export const StyledFormArea = styled.View`
   width: 90%;
 `;
 
-export const StyledTextInput = styled.Text`
-  background-color = ${secondary};
-  padding: 25px;
+export const StyledTextInput = styled.TextInput`
+  background-color: ${secondary};
+  padding: 15px;
   padding-left: 55px;
   padding-right: 55px;
   border-radius: 5px;
@@ -85,7 +85,7 @@ export const RightIcon = styled.TouchableOpacity`
   z-index: 1;
 `;
 
-export const StyledButton = styled. TouchableOpacity`
+export const StyledButton = styled.TouchableOpacity`
   padding: 15px;
   background-color: ${brand};
   justify-content: center;
