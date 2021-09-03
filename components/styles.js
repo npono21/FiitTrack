@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TextInput, TouchableOpacity, RecyclerViewBackedScrollViewComponent} from 'react-native';
 
 // colors
 export const Colors = {
@@ -27,9 +27,9 @@ export const InnerContainer = styled.View`
 `;
 
 export const PageLogo = styled.Image`
-  flex: 1;
-  width: 828px;
-  height: 30000px;
+  top: 15px;
+  width: 200px;
+  height: 200px;
 `;
 
 export const PageTitle = styled.Text`
@@ -37,13 +37,13 @@ export const PageTitle = styled.Text`
   text-align: center;
   font-weight: bold;
   color: ${brand};
-  padding: 10px;
+  padding: 20px;
 `;
 
 export const SubTitle = styled.Text`
   font-size: 18px;
   margin-bottom: 20px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   font-weight: bold;
   color: ${tertiary};
 `;
@@ -79,7 +79,7 @@ export const LeftIcon = styled.View`
 `;
 
 export const RightIcon = styled.TouchableOpacity`
-  left: 15px;
+  right: 15px;
   top: 38px;
   position: absolute;
   z-index: 1;
@@ -87,14 +87,38 @@ export const RightIcon = styled.TouchableOpacity`
 
 export const StyledButton = styled.TouchableOpacity`
   padding: 15px;
-  background-color: ${brand};
+  background-color: red;
   justify-content: center;
+  align-items: center;
   border-radius: 5px;
   margin-vertical: 5px;
-  hight: 60px;
+  height: 60px;
+
+  ${(props) => props.google == true && `
+    background-color: ${green};
+    flex-direction: row;
+    justify-content: center;
+  `}
 `;
 
 export const ButtonText = styled.Text`
   color = ${primary};
   font-size: 16px;
+  align-items: center;
+
+  ${(props) => props.google == true && `
+    padding: 25px;
+  `}
+`;
+
+export const MsgBox = styled.Text`
+  text-align: center;
+  font-size: 13px;
+`;
+
+export const Line = styled.View`
+  height: 1px;
+  width = 100%;
+  background-color: ${darkLight};
+  margin-vertical: 10px;
 `;
