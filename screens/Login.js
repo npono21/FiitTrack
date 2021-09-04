@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Formik } from 'formik';
-import { TextInput, View } from 'react-native';
+import { ImageBackground, TextInput, View, StyleSheet } from 'react-native';
 import {Octicons, Ionicons, Fontisto} from '@expo/vector-icons';
 
 
@@ -24,7 +24,8 @@ import {
   ExtraText,
   ExtraView,
   TextLink,
-  TextLinkContent
+  TextLinkContent,
+  BackgroundImage
 } from './../components/styles';
 import { darkblue } from 'color-name';
 import { red } from 'ansi-colors';
@@ -32,17 +33,32 @@ import { red } from 'ansi-colors';
 //Color Structuring
 const {brand, darkLight, primary} = Colors;
 
-const Login = () => {
+//Keyboard avoiding wrapper.
+import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper';
+import styled from 'styled-components';
+
+const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    justifyContent: "center"
+  }
+});
+
+const Login = ({navigation}) => {
   const [hidePassword, setHidePassword] = useState(true);
 
   return(
-    <StyledContainer>
-      <StatusBar style = "dark" />
+    <KeyboardAvoidingWrapper>
+      <StyledContainer>
+        <ImageBackground resizeMode="cover" source={require('../assets/loginscreen.jpg')} 
+          style={styles.image}>      
+        <StatusBar style = "dark" />
       <InnerContainer>
-        <PageLogo resizeMode = "cover" source = {require('../assets/loginscreen.jpg')}/>
+        {/* <PageLogo resizeMode = "cover" source = {require('../assets/loginscreen.jpg')}/> */}
         <PageTitle>FitTrack</PageTitle>
         <SubTitle>Account Login</SubTitle>
-
         <Formik
           initialValues = {{email: '', password: ''}}
           onSubmit = {(values) => {
@@ -85,7 +101,7 @@ const Login = () => {
               </StyledButton>
               <ExtraView>
                 <ExtraText>Don't have an account already? </ExtraText>
-                <TextLink>
+                <TextLink onPress = {() => navigation.navigate('Signup')}>
                   <TextLinkContent>Signup</TextLinkContent>
                 </TextLink>
               </ExtraView>
@@ -93,7 +109,9 @@ const Login = () => {
           )}
         </Formik>
       </InnerContainer>
+      </ImageBackground>
     </StyledContainer>
+  </KeyboardAvoidingWrapper>
 
   );
 }
