@@ -10,17 +10,23 @@ export const Colors = {
   brand:"#6D28D9",
   green:"#10B981",
   red: red,
+  
 };
 
 const {primary, secondary, tertiary, darkLight, brand, green, red} = Colors;
 
+export const BackgroundImage = styled.Image`
+  height: 100%;
+  width: 100%;
+`;
+
 export const StyledContainer = styled.View`
   flex: 1;
-  padding: 25px;
-  background-color: ${primary};
 `;
 
 export const InnerContainer = styled.View`
+  height: 100%;
+  padding: 25px;
   flex: 1;
   width: 100%;
   align-items: center;
@@ -33,19 +39,20 @@ export const PageLogo = styled.Image`
 `;
 
 export const PageTitle = styled.Text`
-  font-size: 30px;
+  font-size: 50px;
   text-align: center;
   font-weight: bold;
   color: red;
-  padding: 20px;
+  margin-top: 100px;
 `;
 
 export const SubTitle = styled.Text`
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   letter-spacing: 0.5px;
   font-weight: bold;
-  color: ${tertiary};
+  color: ${primary};
+  margin-top: 100px;
 `;
 
 export const StyledFormArea = styled.View`
@@ -128,21 +135,24 @@ export const ExtraView = styled.View`
   flex-direction: row;
   align-items: center;
   padding: 10px;
+  margin-bottom: 100px;
 `;
 
 export const ExtraText = styled.Text`
   justify-content: center;
   align-content: center;
-  color: ${tertiary};
+  color: ${primary};
   font-size: 15px;
 `;
 
 export const TextLink = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
+
 `;
 
 export const TextLinkContent = styled.Text`
   color: ${brand};
   font-size: 15px;
+
 `;

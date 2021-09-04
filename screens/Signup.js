@@ -24,47 +24,67 @@ import {
   SubTitle,
   Colors,
 } from './../components/styles';
-import {View, TouchableOpacity } from 'react-native';
+import {View, TouchableOpacity, Platform, Text, TextInput, Pressable, KeyboardAvoidingView, ImageBackground, StyleSheet} from 'react-native';
 
 
 //Color Structuring
 const {brand, darkLight, primary} = Colors;
 
-const Signup = () => {
+//Keyboard avoiding wrapper.
+import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper';
+
+const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    justifyContent: "center"
+  }
+});
+
+
+const Signup = ({navigation}) => {
   const [hidePassword, setHidePassword] = useState(true);
   const [show, setShow] = useState(false);
-  const [date, setDate] = useState(new Date(1990, 0, 1));
-
+  const [date, setDate] = useState(new Date(2000, 0, 1));
   const [dob, setDob] = useState();  //Actual DOB chosen by the user.
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
-    setShow(false);
+    setShow(Platform.OS === "ios");
     setDate(currentDate);
     setDob(currentDate);
   };
 
   const showDatePicker = () => {
-    setShow('date');
+    console.log("DatePicker Called");
+    setShow(true);
   };
 
   return(
-    <StyledContainer>
-      <StatusBar style = "dark" />
+    <KeyboardAvoidingWrapper>
+      <StyledContainer>
+      <ImageBackground resizeMode="cover" source={require('../assets/signupScreen.jpg')} 
+          style={styles.image}>      
+        <StatusBar style = "dark" />
+        {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode="date"
+              is24Hour={true}
+              display="default"
+              onChange={onChange}
+              style={{
+                backgroundColor: 'yellow',
+              }}
+            />
+        )}
+
       <InnerContainer>
+
         <PageTitle>FitTrack</PageTitle>
         <SubTitle>Account Signup</SubTitle>
-        {console.log("Show: ", show)}
-        {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode="date"
-          is24Hour={true}
-          display="default"
-          onChange={onChange}
-        />
-      )}
 
         <Formik
           initialValues = {{fullName: '',email: '', dateOfBirth: '',  password: '', confirmPassword: ''}}
@@ -139,32 +159,36 @@ const Signup = () => {
               <Line/>
               <ExtraView>
                 <ExtraText>Already have an account? </ExtraText>
-                <TextLink>
+                <TextLink onPress = {() => navigation.navigate('Login')}>
                   <TextLinkContent>Login</TextLinkContent>
                 </TextLink>
               </ExtraView>
-          </StyledFormArea>
-          )}
-        </Formik>
-      </InnerContainer>
-    </StyledContainer>
-
+              </StyledFormArea>
+            )}
+          </Formik>
+       </InnerContainer>
+       </ImageBackground>
+      </StyledContainer>
+    </KeyboardAvoidingWrapper>
   );
 }
 
 const MyTextInput = ({ label, icon, isPassword, hidePassword, setHidePassword, isDate, showDatePicker, ...props }) => {
   return (
+    
     <View>
       <LeftIcon>
-        <Octicons name={icon} size={30} color = "red" />
+        <Octicons name={icon} size={30} color= "red" />
       </LeftIcon>
       <StyledInputLabel>{label}</StyledInputLabel>
 
       {isDate && (
         <TouchableOpacity onPress={showDatePicker}>
-          <StyledTextInput {...props} />
+          <StyledTextInput {...props} pointerEvents='none'/>
+          {/* <Text>Enter you BOD</Text> */}
         </TouchableOpacity>
       )}
+      
       {!isDate && <StyledTextInput {...props} />}
 
       {isPassword && (
@@ -179,5 +203,6 @@ const MyTextInput = ({ label, icon, isPassword, hidePassword, setHidePassword, i
     </View>
   );
 };
+
 
 export default Signup;

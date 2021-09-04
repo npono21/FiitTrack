@@ -1,12 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 
-//Screens
-import Login from './screens/Login';
-import Signup from './screens/Signup';
+//React navigation stack.
+import RootStack from './screens/navigators/RootStack';
 
 export default function App() {
-  return <Signup/>;
+  return <RootStack/>;
 }
 
 
