@@ -21,6 +21,10 @@ import {
   ButtonText,
   MsgBox,
   Line,
+  ExtraText,
+  ExtraView,
+  TextLink,
+  TextLinkContent
 } from './../components/styles';
 import { darkblue } from 'color-name';
 import { red } from 'ansi-colors';
@@ -74,11 +78,17 @@ const Login = () => {
               <StyledButton onPress = {handleSubmit}>
                 <ButtonText>Login</ButtonText>
               </StyledButton>
-              <Line />
+              <Line/>
               <StyledButton google = {true} onPress = {handleSubmit}>
                 <Fontisto name = 'google' color = {primary} size = {25} />
                 <ButtonText google = {true} >Sign in with Google</ButtonText>
               </StyledButton>
+              <ExtraView>
+                <ExtraText>Don't have an account already? </ExtraText>
+                <TextLink>
+                  <TextLinkContent>Signup</TextLinkContent>
+                </TextLink>
+              </ExtraView>
           </StyledFormArea>
           )}
         </Formik>
