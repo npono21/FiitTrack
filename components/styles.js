@@ -1,23 +1,31 @@
-import styled from 'styled-components';
-import {View, Text, Image, TextInput, TouchableOpacity, RecyclerViewBackedScrollViewComponent, EdgeInsetsPropType} from 'react-native';
+import styled from "styled-components";
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  RecyclerViewBackedScrollViewComponent,
+  EdgeInsetsPropType,
+} from "react-native";
 
 // colors
 export const Colors = {
   primary: "#ffffff",
-  secondary:"#E5E7EB",
-  tertiary:"#1F2937",
-  darkLight:"#9CA3AF",
-  brand:"#6D28D9",
-  green:"#10B981",
+  secondary: "#E5E7EB",
+  tertiary: "#1F2937",
+  darkLight: "#9CA3AF",
+  brand: "#6D28D9",
+  green: "#10B981",
   red: red,
-  
 };
 
-const {primary, secondary, tertiary, darkLight, brand, green, red} = Colors;
+const { primary, secondary, tertiary, darkLight, brand, green, red } = Colors;
 
 export const BackgroundImage = styled.Image`
   height: 100%;
   width: 100%;
+  blurRadius: {1};
 `;
 
 export const StyledContainer = styled.View`
@@ -73,21 +81,22 @@ export const StyledTextInput = styled.TextInput`
 `;
 
 export const StyledInputLabel = styled.Text`
-  color: ${tertiary};
+  color: ${primary};
   font-size: 13px;
+  font-weight: bold;
   text-align: left;
 `;
 
 export const LeftIcon = styled.View`
   left: 15px;
-  top: 38px;
+  top: 33px;
   position: absolute;
   z-index: 1;
 `;
 
 export const RightIcon = styled.TouchableOpacity`
   right: 15px;
-  top: 38px;
+  top: 33px;
   position: absolute;
   z-index: 1;
 `;
@@ -101,7 +110,9 @@ export const StyledButton = styled.TouchableOpacity`
   margin-vertical: 5px;
   height: 60px;
 
-  ${(props) => props.google == true && `
+  ${(props) =>
+    props.google == true &&
+    `
     background-color: ${green};
     flex-direction: row;
     justify-content: center;
@@ -113,7 +124,9 @@ export const ButtonText = styled.Text`
   font-size: 16px;
   align-items: center;
 
-  ${(props) => props.google == true && `
+  ${(props) =>
+    props.google == true &&
+    `
     padding: 25px;
   `}
 `;
@@ -148,11 +161,17 @@ export const ExtraText = styled.Text`
 export const TextLink = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
-
 `;
 
 export const TextLinkContent = styled.Text`
   color: ${brand};
   font-size: 15px;
+`;
 
+export const MeasurementsButton = styled.TouchableOpacity`
+  right: 15px;
+  top: 33px;
+  position: absolute;
+  z-index: 1;
+  color = ${tertiary};
 `;
