@@ -1,4 +1,7 @@
 import styled from "styled-components";
+
+import { StyleSheet } from "react-native";
+
 import {
   View,
   Text,
@@ -28,8 +31,21 @@ export const BackgroundImage = styled.Image`
   blurRadius: {1};
 `;
 
+/*
+const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    //blurRadius: {1}
+  },
+});
+*/
+
 export const StyledContainer = styled.View`
   flex: 1;
+  height: 100%;
 `;
 
 export const InnerContainer = styled.View`
@@ -46,12 +62,13 @@ export const PageLogo = styled.Image`
   height: 200px;
 `;
 
+//prettier-ignore
 export const PageTitle = styled.Text`
   font-size: 50px;
   text-align: center;
   font-weight: bold;
-  color: red;
-  margin-top: 100px;
+  color: ${primary};
+  margin-top: 30px;
 `;
 
 export const SubTitle = styled.Text`
@@ -148,7 +165,7 @@ export const ExtraView = styled.View`
   flex-direction: row;
   align-items: center;
   padding: 10px;
-  margin-bottom: 100px;
+  margin-bottom: 200px;
 `;
 
 export const ExtraText = styled.Text`
@@ -174,4 +191,26 @@ export const MeasurementsButton = styled.TouchableOpacity`
   position: absolute;
   z-index: 1;
   color = ${tertiary};
+`;
+
+export const BlackedOutBackground = styled.View`
+    height: 300px;
+    width: 150px;
+    color = ${primary};
+    flex: 1;
+`;
+
+export const HomeTitle = styled.Text`
+  font-size: 50px;
+  text-align: center;
+  font-weight: bold;
+  color: red;
+  margin-top: 100px;
+`;
+
+export const DeleteIcon = styled.TouchableOpacity`
+  top: 15px;
+  right: 25px;
+  position: absolute;
+  z-index: 1;
 `;

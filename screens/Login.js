@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Formik } from "formik";
-import { ImageBackground, TextInput, View, StyleSheet } from "react-native";
+import { ImageBackground, View, StyleSheet } from "react-native";
 import { Octicons, Ionicons, Fontisto } from "@expo/vector-icons";
 
 import {
@@ -24,7 +24,6 @@ import {
   ExtraView,
   TextLink,
   TextLinkContent,
-  BackgroundImage,
 } from "./../components/styles";
 import { darkblue } from "color-name";
 import { red } from "ansi-colors";
@@ -54,22 +53,23 @@ const Login = ({ navigation }) => {
 
   return (
     <KeyboardAvoidingWrapper>
-      <StyledContainer>
-        <ImageBackground
-          blurRadius={8}
-          resizeMode="cover"
-          source={require("../assets/loginscreen.jpg")}
-          style={styles.image}
-        >
+      <ImageBackground
+        blurRadius={10}
+        resizeMode="cover"
+        source={require("../assets/loginscreen.jpg")}
+        style={styles.image}
+        position="absolute"
+      >
+        <StyledContainer>
           <StatusBar style="dark" />
           <InnerContainer>
             {/* <PageLogo resizeMode = "cover" source = {require('../assets/loginscreen.jpg')}/> */}
-            <PageTitle>FitTrack</PageTitle>
+            <PageTitle>FiitTrack</PageTitle>
             <SubTitle>Account Login</SubTitle>
             <Formik
               initialValues={{ email: "", password: "" }}
               onSubmit={(values) => {
-                console.log(values);
+                //console.log(values);
                 navigation.navigate("Workouts");
               }}
             >
@@ -117,8 +117,8 @@ const Login = ({ navigation }) => {
               )}
             </Formik>
           </InnerContainer>
-        </ImageBackground>
-      </StyledContainer>
+        </StyledContainer>
+      </ImageBackground>
     </KeyboardAvoidingWrapper>
   );
 };
