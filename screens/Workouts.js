@@ -5,7 +5,6 @@ import {
   View,
   Text,
   TextInput,
-  SafeAreaView,
 } from "react-native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 
@@ -13,12 +12,8 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 //import { faWeight } from "@fortawesome/free-solid-svg-icons";
 
 import {
-  MeasurementsButton,
   StyledContainer,
-  BlackedOutBackground,
-  HomeTitle,
   PageTitle,
-  SubTitle,
   Colors,
   DeleteIcon,
 } from "../components/styles";
