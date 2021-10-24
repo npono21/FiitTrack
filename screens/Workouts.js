@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useState, useReducer, useEffect } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -8,8 +8,11 @@ import {
   SafeAreaView,
   TouchableWithoutFeedback,
   TouchableOpacity,
-} from 'react-native';
-import { Ionicons, AntDesign } from '@expo/vector-icons';
+  Alert,
+  Button,
+  Modal,
+} from "react-native";
+import { Ionicons, AntDesign } from "@expo/vector-icons";
 //import uniqid from 'uniqid';
 
 //import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,17 +28,44 @@ import {
   Colors,
   DeleteIcon,
   AddIcon,
-} from '../components/styles';
+} from "../components/styles";
 
 const { brand, darkLight, primary } = Colors;
 
 const styles = StyleSheet.create({
   image: {
     flex: 1,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
     //blurRadius: {1}
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  cancelButton: {
+    paddingLeft: 10,
+  },
+  submitButton: {
+    paddingRight: 10,
   },
 });
 
@@ -49,7 +79,7 @@ const styledSmallRectangle = StyleSheet.create({
     paddingBottom: 5,
     paddingLeft: 25,
     paddingRight: 10,
-    backgroundColor: 'rgba(81, 81, 81, 0.5)',
+    backgroundColor: "rgba(81, 81, 81, 0.5)",
     width: 130,
   },
 });
@@ -66,8 +96,8 @@ const styledBigRectangle = StyleSheet.create({
     paddingTop: 15,
     paddingRight: 25,
     paddingBottom: 15,
-    backgroundColor: 'rgba(81, 81, 81, 0.5)',
-    alignSelf: 'center',
+    backgroundColor: "rgba(81, 81, 81, 0.5)",
+    alignSelf: "center",
   },
 });
 
@@ -76,25 +106,25 @@ const menuBox = StyleSheet.create({
     height: 65,
     width: 375,
     marginBottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 1)',
+    backgroundColor: "rgba(0, 0, 0, 1)",
     //alignSelf: "center",
   },
 });
 
 const appTitleFontStyles = StyleSheet.create({
   titleText: {
-    fontFamily: 'DamascusSemiBold',
+    fontFamily: "DamascusSemiBold",
     fontSize: 30,
     marginTop: 45,
-    color: 'white',
+    color: "white",
   },
 });
 
 const baseTextFontStyles = StyleSheet.create({
   baseText: {
-    fontFamily: 'DamascusSemiBold',
+    fontFamily: "DamascusSemiBold",
     fontSize: 20,
-    borderColor: 'white',
+    borderColor: "white",
     padding: 5,
     borderWidth: 1,
     marginTop: 50,
@@ -104,12 +134,9 @@ const baseTextFontStyles = StyleSheet.create({
 
 const inputStyles = StyleSheet.create({
   workoutNameInput: {
-    color: 'white',
-    // textAlign: "left",
-    //paddingTop: 5,
+    color: "black",
     fontSize: 20,
     height: 40,
-    // fontFamily: "DamascusSemiBold",
   },
 });
 
@@ -117,7 +144,7 @@ const initialWorkoutsList = [];
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'ADD':
+    case "ADD":
       return [
         ...state,
         {
@@ -125,7 +152,7 @@ const reducer = (state, action) => {
           name: action.payload.name,
         },
       ];
-    case 'DEL':
+    case "DEL":
       return state.filter((obj) => obj.id !== action.payload.id);
     default:
       return state;
@@ -134,69 +161,113 @@ const reducer = (state, action) => {
 
 const Workouts = () => {
   const [workoutsList, dispatch] = useReducer(reducer, initialWorkoutsList);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [workoutName, setWorkoutName] = useState("");
 
   useEffect(() => {
-    //console.log('Workout List', workoutsList);
-  }, [workoutsList]);
+    //    console.log("Workout Name", workoutName);
+  }, [workoutName]);
 
   const handleAddIconClick = (e) => {
-    const id = Date.now().toString(36);
-    const name = 'Workout name ' + id;
-    dispatch({ type: 'ADD', payload: { id: id, name: name } });
+    setWorkoutName("");
+    setModalVisible(true);
   };
 
   const handleDeleteIconClick = (id) => {
-    dispatch({ type: 'DEL', payload: { id: id } });
-    //  console.log('Delete Icon Pressed:', id);
+    dispatch({ type: "DEL", payload: { id: id } });
+  };
+
+  const toggleModalVisibility = () => {
+    setModalVisible(!modalVisible);
+  };
+
+  const handleSubmit = () => {
+    const id = Date.now().toString(36);
+    dispatch({ type: "ADD", payload: { id: id, name: workoutName } });
+    setModalVisible(!modalVisible);
   };
 
   return (
     <ImageBackground
       blurRadius={10}
-      resizeMode='cover'
-      source={require('../assets/firstScreen.jpg')}
-      style={styles.image}>
+      resizeMode="cover"
+      source={require("../assets/firstScreen.jpg")}
+      style={styles.image}
+    >
       <StyledContainer>
         <PageTitle style={appTitleFontStyles.titleText}>FiitTrack</PageTitle>
         <View
           style={{
-            flexDirection: 'row',
-            alignItems: 'baseline',
-            justifyContent: 'space-between',
+            flexDirection: "row",
+            alignItems: "baseline",
+            justifyContent: "space-between",
             paddingRight: 20,
-          }}>
+          }}
+        >
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onDismiss={toggleModalVisibility}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text>Please Enter Workout Name</Text>
+                <TextInput
+                  placeholder="Workout Name"
+                  // color={"black"}
+                  value={workoutName}
+                  style={inputStyles.workoutNameInput}
+                  onChangeText={(value) => setWorkoutName(value)}
+                />
+                {/** This button is responsible to close the modal */}
+                <Button
+                  style={styles.cancelButton}
+                  title="Cancel"
+                  onPress={toggleModalVisibility}
+                  color={"black"}
+                />
+                <Button
+                  style={styles.submitButton}
+                  title="Submit"
+                  onPress={handleSubmit}
+                  color={"black"}
+                />
+              </View>
+            </View>
+          </Modal>
+
           <View style={styledSmallRectangle.rectangle}>
             <Text
               style={{
-                color: 'white',
-                // textAlign: "right",
+                color: "white",
                 fontSize: 20,
-                fontFamily: 'DamascusSemiBold',
-              }}>
+                fontFamily: "DamascusSemiBold",
+              }}
+            >
               Workouts
             </Text>
           </View>
           <AddIcon onPress={handleAddIconClick}>
-            <AntDesign name='pluscircle' size={25} color='white' />
+            <AntDesign name="pluscircle" size={25} color="white" />
           </AddIcon>
         </View>
         {workoutsList.map((obj, index) => {
           return (
             <View style={styledBigRectangle.bigRectangle} key={index}>
               <DeleteIcon onPress={() => handleDeleteIconClick(obj.id)}>
-                <AntDesign name='minuscircle' size={25} color='white' />
+                <AntDesign name="minuscircle" size={25} color="white" />
               </DeleteIcon>
               <TextInput
                 style={inputStyles.workoutNameInput}
-                placeholder='Enter workout name'
-                placeholderTextColor='white'
                 value={obj.name}
               />
               <View
                 style={{
-                  borderBottomColor: 'red',
+                  borderBottomColor: "red",
                   borderBottomWidth: 2.5,
-                }}></View>
+                }}
+              ></View>
             </View>
           );
         })}
