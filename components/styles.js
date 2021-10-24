@@ -214,3 +214,10 @@ export const DeleteIcon = styled.TouchableOpacity`
   position: absolute;
   z-index: 1;
 `;
+
+export const AddIcon = styled.TouchableOpacity`
+  top: 15px;
+  right: 25px;
+  position: absolute;
+  z-index: 1;
+`;
