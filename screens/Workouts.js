@@ -5,30 +5,27 @@ import {
   View,
   Text,
   TextInput,
-  SafeAreaView,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  Alert,
   Button,
   Modal,
 } from "react-native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
-//import uniqid from 'uniqid';
-
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import { faWeight } from "@fortawesome/free-solid-svg-icons";
 
 import {
-  MeasurementsButton,
   StyledContainer,
-  BlackedOutBackground,
-  HomeTitle,
   PageTitle,
-  SubTitle,
   Colors,
   DeleteIcon,
   AddIcon,
 } from "../components/styles";
+
+// import {
+//   styledSmallRectangle,
+//   styledBigRectangle,
+//   menuBox,
+//   appTitleFontStyles,
+//   baseTextFontStyles,
+//   inputStyles,
+// } from "../components/stylesWorkouts";
 
 const { brand, darkLight, primary } = Colors;
 
@@ -38,7 +35,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     justifyContent: "center",
-    //blurRadius: {1}
   },
   centeredView: {
     flex: 1,
@@ -47,33 +43,27 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    margin: 20,
-    backgroundColor: "white",
+    margin: 10,
+    backgroundColor: "black",
     borderRadius: 20,
-    padding: 35,
+    padding: 15,
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+    width: "75%",
   },
   cancelButton: {
     paddingLeft: 10,
+    color: "white",
   },
   submitButton: {
     paddingRight: 10,
+    color: "white",
   },
 });
 
 const styledSmallRectangle = StyleSheet.create({
   rectangle: {
-    // position: "absolute",
     marginTop: 15,
-    marginLeft: 7,
+    marginLeft: 0,
     borderRadius: 10,
     paddingTop: 5,
     paddingBottom: 5,
@@ -86,8 +76,6 @@ const styledSmallRectangle = StyleSheet.create({
 
 const styledBigRectangle = StyleSheet.create({
   bigRectangle: {
-    // position: "absolute",
-    // height: 140,
     width: 360,
     marginTop: 10,
     marginLeft: 0,
@@ -107,7 +95,6 @@ const menuBox = StyleSheet.create({
     width: 375,
     marginBottom: 0,
     backgroundColor: "rgba(0, 0, 0, 1)",
-    //alignSelf: "center",
   },
 });
 
@@ -134,9 +121,27 @@ const baseTextFontStyles = StyleSheet.create({
 
 const inputStyles = StyleSheet.create({
   workoutNameInput: {
-    color: "black",
-    fontSize: 20,
+    color: "white",
+    fontSize: 25,
     height: 40,
+    fontWeight: "bold",
+    padding: 20,
+  },
+  typeStyle: {
+    color: "white",
+    fontSize: 20,
+    paddingTop: 10,
+  },
+  typeViewStyle: {
+    //flexDirection: "row",
+  },
+});
+
+const buttonView = StyleSheet.create({
+  buttonStyle: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 15,
   },
 });
 
@@ -159,10 +164,19 @@ const reducer = (state, action) => {
   }
 };
 
+const getCurrentDate = () => {
+  var date = new Date().getDate();
+  var month = new Date().getMonth() + 1;
+  var year = new Date().getFullYear();
+  return date + "-" + month + "-" + year;
+};
+
 const Workouts = () => {
   const [workoutsList, dispatch] = useReducer(reducer, initialWorkoutsList);
   const [modalVisible, setModalVisible] = useState(false);
   const [workoutName, setWorkoutName] = useState("");
+
+  const [workoutType, setWorkoutType] = useState("Unkown");
 
   useEffect(() => {
     //    console.log("Workout Name", workoutName);
@@ -205,34 +219,34 @@ const Workouts = () => {
           }}
         >
           <Modal
-            animationType="slide"
+            animationType="fade"
             transparent={true}
             visible={modalVisible}
             onDismiss={toggleModalVisibility}
           >
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                <Text>Please Enter Workout Name</Text>
                 <TextInput
-                  placeholder="Workout Name"
-                  // color={"black"}
-                  value={workoutName}
                   style={inputStyles.workoutNameInput}
+                  placeholder="Workout Name"
+                  placeholderTextColor={"white"}
+                  keyboardAppearance={"dark"}
+                  spellCheck={false}
+                  textAlign={"center"}
+                  value={workoutName}
                   onChangeText={(value) => setWorkoutName(value)}
                 />
-                {/** This button is responsible to close the modal */}
-                <Button
-                  style={styles.cancelButton}
-                  title="Cancel"
-                  onPress={toggleModalVisibility}
-                  color={"black"}
-                />
-                <Button
-                  style={styles.submitButton}
-                  title="Submit"
-                  onPress={handleSubmit}
-                  color={"black"}
-                />
+                <View style={inputStyles.typeViewStyle}>
+                  <Text style={inputStyles.typeStyle}>Workout Type:</Text>
+                </View>
+                <View style={buttonView.buttonStyle}>
+                  <Button
+                    title="Cancel"
+                    onPress={toggleModalVisibility}
+                    style={{ marginRight: 20 }}
+                  />
+                  <Button title="Submit" onPress={handleSubmit} />
+                </View>
               </View>
             </View>
           </Modal>
