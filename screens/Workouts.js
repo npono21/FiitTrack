@@ -140,8 +140,16 @@ const inputStyles = StyleSheet.create({
 const buttonView = StyleSheet.create({
   buttonStyle: {
     flexDirection: "row",
-    justifyContent: "space-between",
     marginTop: 15,
+  },
+  workoutInfoStyle: {
+    flexDirection: "column",
+    marginTop: 10,
+  },
+  workoutInfoText: {
+    color: "red",
+    fontSize: 15,
+    fontFamily: "DamascusSemiBold",
   },
 });
 
@@ -162,13 +170,6 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-};
-
-const getCurrentDate = () => {
-  var date = new Date().getDate();
-  var month = new Date().getMonth() + 1;
-  var year = new Date().getFullYear();
-  return date + "-" + month + "-" + year;
 };
 
 const Workouts = () => {
@@ -200,6 +201,17 @@ const Workouts = () => {
     dispatch({ type: "ADD", payload: { id: id, name: workoutName } });
     setModalVisible(!modalVisible);
   };
+  //prettier-ignore
+  const [currentDate, setCurrentDate] = useState('');
+
+  useEffect(() => {
+    var date = new Date().getDate();
+    var month = new Date().getMonth() + 1;
+    var year = new Date().getFullYear();
+    setCurrentDate(date + "-" + month + "-" + year);
+  }, []);
+
+  // console.log({ currentDate });
 
   return (
     <ImageBackground
@@ -282,6 +294,13 @@ const Workouts = () => {
                   borderBottomWidth: 2.5,
                 }}
               ></View>
+              <View style={buttonView.workoutInfoStyle}>
+                <Text style={buttonView.workoutInfoText}>
+                  Date Completed: {currentDate}{" "}
+                </Text>
+                <Text style={buttonView.workoutInfoText}>Workout Type: </Text>
+                <Text style={buttonView.workoutInfoText}>Duration: </Text>
+              </View>
             </View>
           );
         })}
