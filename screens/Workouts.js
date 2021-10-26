@@ -7,6 +7,7 @@ import {
   TextInput,
   Button,
   Modal,
+  ScrollView,
 } from "react-native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 
@@ -44,11 +45,13 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 10,
-    backgroundColor: "black",
+    backgroundColor: "rgba(0, 0, 0, 0.9)",
     borderRadius: 20,
-    padding: 15,
+    borderWidth: 2,
+    padding: 10,
     alignItems: "center",
     width: "75%",
+    borderColor: "red",
   },
   cancelButton: {
     paddingLeft: 10,
@@ -64,7 +67,10 @@ const styledSmallRectangle = StyleSheet.create({
   rectangle: {
     marginTop: 15,
     marginLeft: 0,
-    borderRadius: 10,
+    borderBottomLeftRadius: 0,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
     paddingTop: 5,
     paddingBottom: 5,
     paddingLeft: 25,
@@ -80,12 +86,11 @@ const styledBigRectangle = StyleSheet.create({
     marginTop: 10,
     marginLeft: 0,
     borderRadius: 28,
-    paddingLeft: 25,
-    paddingTop: 15,
-    paddingRight: 25,
-    paddingBottom: 15,
-    backgroundColor: "rgba(81, 81, 81, 0.5)",
+    padding: 10,
+    backgroundColor: "rgba(81, 81, 81, 0.35)",
     alignSelf: "center",
+    borderWidth: 2,
+    borderColor: "red",
   },
 });
 
@@ -125,7 +130,7 @@ const inputStyles = StyleSheet.create({
     fontSize: 25,
     height: 40,
     fontWeight: "bold",
-    padding: 20,
+    //padding: 20,
   },
   typeStyle: {
     color: "white",
@@ -220,91 +225,104 @@ const Workouts = () => {
       source={require("../assets/firstScreen.jpg")}
       style={styles.image}
     >
-      <StyledContainer>
-        <PageTitle style={appTitleFontStyles.titleText}>FiitTrack</PageTitle>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "baseline",
-            justifyContent: "space-between",
-            paddingRight: 20,
-          }}
-        >
-          <Modal
-            animationType="fade"
-            transparent={true}
-            visible={modalVisible}
-            onDismiss={toggleModalVisibility}
+      <ScrollView>
+        <StyledContainer>
+          <PageTitle style={appTitleFontStyles.titleText}>FiitTrack</PageTitle>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "baseline",
+              justifyContent: "space-between",
+              paddingRight: 20,
+            }}
           >
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
+            <Modal
+              animationType="fade"
+              transparent={true}
+              visible={modalVisible}
+              onDismiss={toggleModalVisibility}
+            >
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                  <TextInput
+                    style={inputStyles.workoutNameInput}
+                    placeholder="Workout Name"
+                    placeholderTextColor={"white"}
+                    keyboardAppearance={"dark"}
+                    spellCheck={false}
+                    textAlign={"center"}
+                    value={workoutName}
+                    onChangeText={(value) => setWorkoutName(value)}
+                  />
+                  <View style={inputStyles.typeViewStyle}>
+                    <Text style={inputStyles.typeStyle}>Workout Type:</Text>
+                  </View>
+                  <View style={buttonView.buttonStyle}>
+                    <Button
+                      title="Cancel"
+                      onPress={toggleModalVisibility}
+                      style={{ marginRight: 20 }}
+                    />
+                    <Button title="Submit" onPress={handleSubmit} />
+                  </View>
+                </View>
+              </View>
+            </Modal>
+
+            <View style={styledSmallRectangle.rectangle}>
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 20,
+                  fontFamily: "DamascusSemiBold",
+                }}
+              >
+                Workouts
+              </Text>
+            </View>
+            <AddIcon onPress={handleAddIconClick}>
+              <AntDesign name="pluscircle" size={25} color="white" />
+            </AddIcon>
+          </View>
+          {workoutsList.map((obj, index) => {
+            return (
+              <View style={styledBigRectangle.bigRectangle} key={index}>
+                <DeleteIcon onPress={() => handleDeleteIconClick(obj.id)}>
+                  <AntDesign name="minuscircle" size={25} color="white" />
+                </DeleteIcon>
                 <TextInput
                   style={inputStyles.workoutNameInput}
-                  placeholder="Workout Name"
-                  placeholderTextColor={"white"}
-                  keyboardAppearance={"dark"}
-                  spellCheck={false}
-                  textAlign={"center"}
-                  value={workoutName}
-                  onChangeText={(value) => setWorkoutName(value)}
+                  value={obj.name}
                 />
-                <View style={inputStyles.typeViewStyle}>
-                  <Text style={inputStyles.typeStyle}>Workout Type:</Text>
-                </View>
-                <View style={buttonView.buttonStyle}>
-                  <Button
-                    title="Cancel"
-                    onPress={toggleModalVisibility}
-                    style={{ marginRight: 20 }}
-                  />
-                  <Button title="Submit" onPress={handleSubmit} />
+                <View
+                  style={{
+                    borderBottomColor: "red",
+                    borderBottomWidth: 2.5,
+                  }}
+                ></View>
+                <View style={buttonView.workoutInfoStyle}>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={buttonView.workoutInfoText}>
+                      Date Completed:{" "}
+                    </Text>
+                    <Text
+                      style={{
+                        color: "white",
+                        fontSize: 15,
+                        fontFamily: "DamascusSemiBold",
+                      }}
+                    >
+                      {currentDate}
+                    </Text>
+                  </View>
+                  <Text style={buttonView.workoutInfoText}>Workout Type: </Text>
+                  <Text style={buttonView.workoutInfoText}>Duration: </Text>
                 </View>
               </View>
-            </View>
-          </Modal>
-
-          <View style={styledSmallRectangle.rectangle}>
-            <Text
-              style={{
-                color: "white",
-                fontSize: 20,
-                fontFamily: "DamascusSemiBold",
-              }}
-            >
-              Workouts
-            </Text>
-          </View>
-          <AddIcon onPress={handleAddIconClick}>
-            <AntDesign name="pluscircle" size={25} color="white" />
-          </AddIcon>
-        </View>
-        {workoutsList.map((obj, index) => {
-          return (
-            <View style={styledBigRectangle.bigRectangle} key={index}>
-              <DeleteIcon onPress={() => handleDeleteIconClick(obj.id)}>
-                <AntDesign name="minuscircle" size={25} color="white" />
-              </DeleteIcon>
-              <TextInput
-                style={inputStyles.workoutNameInput}
-                value={obj.name}
-              />
-              <View
-                style={{
-                  borderBottomColor: "red",
-                  borderBottomWidth: 2.5,
-                }}
-              ></View>
-              <View style={buttonView.workoutInfoStyle}>
-                <Text style={buttonView.workoutInfoText}>
-                  Date Completed: {currentDate}{" "}
-                </Text>
-                <Text style={buttonView.workoutInfoText}>Workout Type: </Text>
-                <Text style={buttonView.workoutInfoText}>Duration: </Text>
-              </View>
-            </View>
-          );
-        })}
-      </StyledContainer>
+            );
+          })}
+        </StyledContainer>
+      </ScrollView>
     </ImageBackground>
   );
 };
