@@ -8,27 +8,20 @@ import {
   Button,
   Modal,
   ScrollView,
+  Alert,
 } from "react-native";
-import { Ionicons, AntDesign } from "@expo/vector-icons";
+
+import { AntDesign } from "@expo/vector-icons";
+
+import DropDownPicker from "react-native-dropdown-picker";
 
 import {
   StyledContainer,
   PageTitle,
-  Colors,
   DeleteIcon,
   AddIcon,
+  MeasurementsButton,
 } from "../components/styles";
-
-// import {
-//   styledSmallRectangle,
-//   styledBigRectangle,
-//   menuBox,
-//   appTitleFontStyles,
-//   baseTextFontStyles,
-//   inputStyles,
-// } from "../components/stylesWorkouts";
-
-const { brand, darkLight, primary } = Colors;
 
 const styles = StyleSheet.create({
   image: {
@@ -50,16 +43,20 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     padding: 10,
     alignItems: "center",
-    width: "75%",
+    width: "85%",
     borderColor: "red",
   },
-  cancelButton: {
-    paddingLeft: 10,
-    color: "white",
+  menuBarStyles: {
+    backgroundColor: "black",
+    height: 75,
+    width: "100%",
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
-  submitButton: {
-    paddingRight: 10,
-    color: "white",
+  menuIconStyles: {
+    flexDirection: "row",
+    padding: 5,
+    justifyContent: "space-evenly",
   },
 });
 
@@ -94,15 +91,6 @@ const styledBigRectangle = StyleSheet.create({
   },
 });
 
-const menuBox = StyleSheet.create({
-  menuBox: {
-    height: 65,
-    width: 375,
-    marginBottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 1)",
-  },
-});
-
 const appTitleFontStyles = StyleSheet.create({
   titleText: {
     fontFamily: "DamascusSemiBold",
@@ -112,25 +100,12 @@ const appTitleFontStyles = StyleSheet.create({
   },
 });
 
-const baseTextFontStyles = StyleSheet.create({
-  baseText: {
-    fontFamily: "DamascusSemiBold",
-    fontSize: 20,
-    borderColor: "white",
-    padding: 5,
-    borderWidth: 1,
-    marginTop: 50,
-    borderRadius: 10,
-  },
-});
-
 const inputStyles = StyleSheet.create({
   workoutNameInput: {
     color: "white",
-    fontSize: 25,
+    fontSize: 20,
     height: 40,
     fontWeight: "bold",
-    //padding: 20,
   },
   typeStyle: {
     color: "white",
@@ -138,14 +113,34 @@ const inputStyles = StyleSheet.create({
     paddingTop: 10,
   },
   typeViewStyle: {
-    //flexDirection: "row",
+    flexDirection: "row",
   },
 });
 
 const buttonView = StyleSheet.create({
-  buttonStyle: {
+  cancelButtonStyle: {
     flexDirection: "row",
     marginTop: 15,
+    backgroundColor: "white",
+    borderRadius: 10,
+    borderColor: "red",
+    borderWidth: 2,
+  },
+  submitButtonStyle: {
+    flexDirection: "row",
+    marginTop: 15,
+    backgroundColor: "white",
+    borderRadius: 10,
+    marginLeft: 20,
+    borderColor: "red",
+    borderWidth: 2,
+  },
+  selectStyle: {
+    flexDirection: "row",
+    borderRadius: 10,
+    marginLeft: 10,
+    marginTop: 2,
+    borderColor: "red",
   },
   workoutInfoStyle: {
     flexDirection: "column",
@@ -177,24 +172,33 @@ const reducer = (state, action) => {
   }
 };
 
-const Workouts = () => {
+const Workouts = ({ navigation }) => {
   const [workoutsList, dispatch] = useReducer(reducer, initialWorkoutsList);
   const [modalVisible, setModalVisible] = useState(false);
   const [workoutName, setWorkoutName] = useState("");
 
-  const [workoutType, setWorkoutType] = useState("Unkown");
+  useEffect(() => {}, [workoutName]);
 
-  useEffect(() => {
-    //    console.log("Workout Name", workoutName);
-  }, [workoutName]);
-
-  const handleAddIconClick = (e) => {
+  const handleAddIconClick = () => {
     setWorkoutName("");
     setModalVisible(true);
   };
 
   const handleDeleteIconClick = (id) => {
-    dispatch({ type: "DEL", payload: { id: id } });
+    Alert.alert(
+      "Confirm Action",
+      "Are you sure you want to delete the workout?",
+      [
+        {
+          text: "Go Back",
+          style: "cancel",
+        },
+        {
+          text: "Confirm",
+          onPress: () => dispatch({ type: "DEL", payload: { id: id } }),
+        },
+      ]
+    );
   };
 
   const toggleModalVisibility = () => {
@@ -216,7 +220,12 @@ const Workouts = () => {
     setCurrentDate(date + "-" + month + "-" + year);
   }, []);
 
-  // console.log({ currentDate });
+  const [workoutType, setWorkoutType] = useState();
+
+  const handleSelectWorkoutType = (e) => {
+    setWorkoutType();
+    setModalVisible(true);
+  };
 
   return (
     <ImageBackground
@@ -244,26 +253,57 @@ const Workouts = () => {
             >
               <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                  <TextInput
-                    style={inputStyles.workoutNameInput}
-                    placeholder="Workout Name"
-                    placeholderTextColor={"white"}
-                    keyboardAppearance={"dark"}
-                    spellCheck={false}
-                    textAlign={"center"}
-                    value={workoutName}
-                    onChangeText={(value) => setWorkoutName(value)}
-                  />
+                  <View>
+                    <TextInput
+                      style={inputStyles.workoutNameInput}
+                      placeholder="Enter Workout Name..."
+                      placeholderTextColor={"white"}
+                      keyboardAppearance={"dark"}
+                      spellCheck={false}
+                      textAlign={"center"}
+                      value={workoutName}
+                      onChangeText={(value) => setWorkoutName(value)}
+                    />
+                  </View>
                   <View style={inputStyles.typeViewStyle}>
                     <Text style={inputStyles.typeStyle}>Workout Type:</Text>
+                    <View style={buttonView.selectStyle}>
+                      <DropDownPicker
+                        items={[
+                          { label: "Item 1", value: "Item 1" },
+                          { label: "Item 2", value: "Item 2" },
+                          { label: "Item 3", value: "Item 3" },
+                          { label: "Item 4", value: "Item 4" },
+                          { label: "Item 5", value: "Item 5" },
+                        ]}
+                        containerStyle={{
+                          height: 40,
+                          width: 150,
+                          marginBottom: 5,
+                        }}
+                        style={{ backgroundColor: "#fafafa" }}
+                        dropDownStyle={{ backgroundColor: "#fafafa" }}
+                        onChangeItem={(item) =>
+                          console.log(item.label, item.value)
+                        }
+                      />
+                    </View>
                   </View>
-                  <View style={buttonView.buttonStyle}>
-                    <Button
-                      title="Cancel"
-                      onPress={toggleModalVisibility}
-                      style={{ marginRight: 20 }}
-                    />
-                    <Button title="Submit" onPress={handleSubmit} />
+                  <View style={{ flexDirection: "row" }}>
+                    <View style={buttonView.cancelButtonStyle}>
+                      <Button
+                        title="Cancel"
+                        onPress={toggleModalVisibility}
+                        style={{ marginRight: 20 }}
+                      />
+                    </View>
+                    <View style={buttonView.submitButtonStyle}>
+                      <Button
+                        title="Submit"
+                        onPress={handleSubmit}
+                        disabled={!workoutName}
+                      />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -272,7 +312,7 @@ const Workouts = () => {
             <View style={styledSmallRectangle.rectangle}>
               <Text
                 style={{
-                  color: "white",
+                  color: "red",
                   fontSize: 20,
                   fontFamily: "DamascusSemiBold",
                 }}
@@ -281,7 +321,7 @@ const Workouts = () => {
               </Text>
             </View>
             <AddIcon onPress={handleAddIconClick}>
-              <AntDesign name="pluscircle" size={25} color="white" />
+              <AntDesign name="pluscircle" size={25} color="red" />
             </AddIcon>
           </View>
           {workoutsList.map((obj, index) => {
@@ -323,8 +363,31 @@ const Workouts = () => {
           })}
         </StyledContainer>
       </ScrollView>
+      <View style={styles.menuBarStyles}>
+        <View style={styles.menuIconStyles}>
+          <AntDesign name="home" size={45} color="red" />
+          <MeasurementsButton
+            onPress={() => navigation.navigate("Measurements")}
+          >
+            <AntDesign name="barschart" size={45} color="red" />
+          </MeasurementsButton>
+        </View>
+      </View>
     </ImageBackground>
   );
 };
 
 export default Workouts;
+
+{
+  /* <Picker
+  selectedValue={workoutType}
+  onValueChange={(itemValue, itemIndex) => setWorkoutType(itemValue)}
+>
+  <Picker.Item label="Strength" value="Strength" color="white" />
+  <Picker.Item label="Cardio" value="Cardio" color="white" />
+  <Picker.Item label="Resistance" value="Resistance" color="white" />
+  <Picker.Item label="HIIT" value="HIIT" color="white" />
+  <Picker.Item label="Recovery" value="Recovery" color="white" />
+</Picker>; */
+}

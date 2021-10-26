@@ -11,6 +11,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "../Login";
 import Signup from "../Signup";
 import Workouts from "../Workouts";
+import Measurements from "../Measurements";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,15 +20,7 @@ const RootStack = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerStyle: {
-            backgroundColor: "transparent",
-          },
-          headerTintColor: tertiary,
-          headerTransparent: true,
-          headerTitle: "",
-          headerLeftContainerStyle: {
-            paddingLeft: 20,
-          },
+          headerShown: false,
         }}
         initialRouteName="Login"
       >
@@ -45,6 +38,11 @@ const RootStack = () => {
           options={{ headerTintColor: primary }}
           name="Workouts"
           component={Workouts}
+        />
+        <Stack.Screen
+          options={{ headerTintColor: primary }}
+          name="Measurements"
+          component={Measurements}
         />
       </Stack.Navigator>
     </NavigationContainer>
