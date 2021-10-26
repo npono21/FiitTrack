@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 import {
   View,
@@ -10,16 +10,16 @@ import {
   TouchableOpacity,
   RecyclerViewBackedScrollViewComponent,
   EdgeInsetsPropType,
-} from 'react-native';
+} from "react-native";
 
 // colors .
 export const Colors = {
-  primary: '#ffffff',
-  secondary: '#E5E7EB',
-  tertiary: '#1F2937',
-  darkLight: '#9CA3AF',
-  brand: '#6D28D9',
-  green: '#10B981',
+  primary: "#ffffff",
+  secondary: "#E5E7EB",
+  tertiary: "#1F2937",
+  darkLight: "#9CA3AF",
+  brand: "#6D28D9",
+  green: "#10B981",
   red: red,
 };
 
@@ -185,14 +185,6 @@ export const TextLinkContent = styled.Text`
   font-size: 15px;
 `;
 
-export const MeasurementsButton = styled.TouchableOpacity`
-  right: 15px;
-  top: 33px;
-  position: absolute;
-  z-index: 1;
-  color = ${tertiary};
-`;
-
 export const BlackedOutBackground = styled.View`
     height: 300px;
     width: 150px;
@@ -219,5 +211,13 @@ export const AddIcon = styled.TouchableOpacity`
   top: 15px;
   right: 25px;
   position: absolute;
+  z-index: 1;
+`;
+
+export const MeasurementsButton = styled.TouchableOpacity`
+  z-index: 1;
+`;
+
+export const HomeButton = styled.TouchableOpacity`
   z-index: 1;
 `;
