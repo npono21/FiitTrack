@@ -6,6 +6,8 @@ import { AntDesign } from "@expo/vector-icons";
 
 import { StyledContainer, HomeButton } from "../components/styles";
 
+import { styledSmallRectangle, titleText } from "../screens/Workouts";
+
 const styles = StyleSheet.create({
   menuBarStyles: {
     backgroundColor: "black",
@@ -36,7 +38,9 @@ const Measurements = ({ navigation }) => {
       style={styles.image}
     >
       <ScrollView>
-        <StyledContainer></StyledContainer>
+        <StyledContainer>
+          <PageTitle style={appFontStyles.titleText}>FiitTrack</PageTitle>
+        </StyledContainer>
       </ScrollView>
       <View style={styles.menuBarStyles}>
         <View style={styles.menuIconStyles}>

@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer, useEffect, Component } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -21,6 +21,7 @@ import {
   DeleteIcon,
   AddIcon,
   MeasurementsButton,
+  StyledSmallRectangle,
 } from "../components/styles";
 
 const styles = StyleSheet.create({
@@ -79,9 +80,9 @@ const modalDialog = StyleSheet.create({
     paddingLeft: 10,
     width: "85%",
     marginLeft: 22,
-    borderWidth: 3,
-    borderColor: "rgba(0, 122, 255, 0.5)",
-    borderRadius: 5,
+    borderWidth: 1.5,
+    borderColor: "rgba(255, 0, 0, 0.5)",
+    borderRadius: 10,
   },
   typeStyle: {
     fontSize: 15,
@@ -169,6 +170,7 @@ const reducer = (state, action) => {
         {
           id: action.payload.id,
           name: action.payload.name,
+          type: action.payload.type,
         },
       ];
     case "DEL":
@@ -178,15 +180,33 @@ const reducer = (state, action) => {
   }
 };
 
+const workoutTypes = [
+  { label: "Strength", value: "Strength" },
+  { label: "Cardio", value: "Cardio" },
+  { label: "Resistance", value: "Resistance" },
+  { label: "Mobility", value: "Mobility" },
+  { label: "Recovery", value: "Recovery" },
+  { label: "HIIT", value: "HIIT" },
+  { label: "Aerobic", value: "Aerobic" },
+  { label: "Anaerobic", value: "Anaerobic" },
+];
+
 const Workouts = ({ navigation }) => {
   const [workoutsList, dispatch] = useReducer(reducer, initialWorkoutsList);
   const [modalVisible, setModalVisible] = useState(false);
   const [workoutName, setWorkoutName] = useState("");
+  const [workoutType, setWorkoutType] = useState("");
+  const [open, setOpen] = useState(false);
+  const [currentDate, setCurrentDate] = useState("");
 
-  useEffect(() => {}, [workoutName]);
+  useEffect(() => {
+    console.log("Type: ", workoutType);
+    console.log("List: ", workoutsList);
+  }, [workoutType, workoutsList]);
 
   const handleAddIconClick = () => {
     setWorkoutName("");
+    setWorkoutType("");
     setModalVisible(true);
   };
 
@@ -213,25 +233,19 @@ const Workouts = ({ navigation }) => {
 
   const handleSubmit = () => {
     const id = Date.now().toString(36);
-    dispatch({ type: "ADD", payload: { id: id, name: workoutName } });
+    dispatch({
+      type: "ADD",
+      payload: { id: id, name: workoutName, type: workoutType },
+    });
     setModalVisible(!modalVisible);
   };
   //prettier-ignore
-  const [currentDate, setCurrentDate] = useState('');
-
   useEffect(() => {
     var date = new Date().getDate();
     var month = new Date().getMonth() + 1;
     var year = new Date().getFullYear();
     setCurrentDate(date + "-" + month + "-" + year);
   }, []);
-
-  const [workoutType, setWorkoutType] = useState();
-
-  const handleSelectWorkoutType = (e) => {
-    setWorkoutType();
-    setModalVisible(true);
-  };
 
   return (
     <ImageBackground
@@ -277,20 +291,24 @@ const Workouts = ({ navigation }) => {
                     <Text style={modalDialog.typeStyle}>Workout Type:</Text>
                     <View style={modalDialog.selectStyle}>
                       <DropDownPicker
-                        items={[
-                          { label: "Item 1", value: "Item 1" },
-                          { label: "Item 2", value: "Item 2" },
-                          { label: "Item 3", value: "Item 3" },
-                          { label: "Item 4", value: "Item 4" },
-                          { label: "Item 5", value: "Item 5" },
-                        ]}
-                        containerStyle={{
+                        open={open}
+                        value={workoutType}
+                        items={workoutTypes}
+                        setOpen={setOpen}
+                        maxHeight={250}
+                        setValue={(value) => setWorkoutType(value)}
+                        style={{
+                          backgroundColor: "white",
+                          borderWidth: 0,
                           width: 150,
                         }}
-                        dropDownStyle={{ backgroundColor: "#fafafa" }}
-                        onChangeItem={(item) =>
-                          console.log(item.label, item.value)
-                        }
+                        textStyle={{
+                          fontSize: 15,
+                          fontFamily: "System",
+                        }}
+                        dropDownContainerStyle={{
+                          backgroundColor: "white",
+                        }}
                       />
                     </View>
                   </View>
@@ -311,14 +329,13 @@ const Workouts = ({ navigation }) => {
                       <Button
                         title="Submit"
                         onPress={handleSubmit}
-                        disabled={!workoutName}
+                        disabled={!workoutName || !workoutType}
                       />
                     </View>
                   </View>
                 </View>
               </View>
             </Modal>
-
             <View style={styledSmallRectangle.rectangle}>
               <Text
                 style={{
@@ -366,8 +383,14 @@ const Workouts = ({ navigation }) => {
                       {currentDate}
                     </Text>
                   </View>
-                  <Text style={appFontStyles.workoutInfoText}>
-                    Workout Type:{" "}
+                  <Text
+                    style={{
+                      color: "white",
+                      fontSize: 15,
+                      fontFamily: "System",
+                    }}
+                  >
+                    {obj.type}
                   </Text>
                   <Text style={appFontStyles.workoutInfoText}>Duration: </Text>
                 </View>
@@ -391,16 +414,3 @@ const Workouts = ({ navigation }) => {
 };
 
 export default Workouts;
-
-{
-  /* <Picker
-  selectedValue={workoutType}
-  onValueChange={(itemValue, itemIndex) => setWorkoutType(itemValue)}
->
-  <Picker.Item label="Strength" value="Strength" color="white" />
-  <Picker.Item label="Cardio" value="Cardio" color="white" />
-  <Picker.Item label="Resistance" value="Resistance" color="white" />
-  <Picker.Item label="HIIT" value="HIIT" color="white" />
-  <Picker.Item label="Recovery" value="Recovery" color="white" />
-</Picker>; */
-}
