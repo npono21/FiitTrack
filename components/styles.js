@@ -197,3 +197,18 @@ export const MeasurementsButton = styled.TouchableOpacity`
 export const HomeButton = styled.TouchableOpacity`
   z-index: 1;
 `;
+
+export const StyledSmallRectangle = styled.View`
+  margin-top: 15px;
+  margin-left: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 25px;
+  padding-right: 10px;
+  background-color: "rgba(81, 81, 81, 0.5)";
+  width: 130px;
+`;

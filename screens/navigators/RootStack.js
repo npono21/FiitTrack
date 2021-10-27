@@ -22,7 +22,7 @@ const RootStack = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Login"
+        initialRouteName="Measurements"
       >
         <Stack.Screen
           options={{ headerTintColor: primary }}
