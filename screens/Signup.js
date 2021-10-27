@@ -123,7 +123,7 @@ const Signup = ({ navigation }) => {
                   <MyTextInput
                     label="Email Address"
                     icon="mail"
-                    placeholder="nickpon123@gmail.com"
+                    placeholder="johndoe@anymail.com"
                     placeholderTextColor={darkLight}
                     onChangeText={handleChange("email")}
                     onBlur={handleBlur("email")}

@@ -30,22 +30,6 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
   },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 10,
-    backgroundColor: "rgba(0, 0, 0, 0.9)",
-    borderRadius: 20,
-    borderWidth: 2,
-    padding: 10,
-    alignItems: "center",
-    width: "85%",
-    borderColor: "red",
-  },
   menuBarStyles: {
     backgroundColor: "black",
     height: 75,
@@ -58,6 +42,71 @@ const styles = StyleSheet.create({
     padding: 5,
     justifyContent: "space-evenly",
   },
+  workoutNameInput: {
+    color: "white",
+    fontSize: 25,
+    height: 40,
+    fontWeight: "bold",
+    marginLeft: 10,
+  },
+});
+
+const modalDialog = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    backgroundColor: "white",
+    borderRadius: 20,
+    width: "85%",
+  },
+  modalTitle: {
+    fontSize: 22,
+    fontWeight: "500",
+  },
+  titleView: {
+    width: "100%",
+    alignItems: "center",
+    marginTop: 20,
+  },
+  workoutNameInput: {
+    fontSize: 15,
+    height: 40,
+    marginTop: 15,
+    paddingLeft: 10,
+    width: "85%",
+    marginLeft: 22,
+    borderWidth: 3,
+    borderColor: "rgba(0, 122, 255, 0.5)",
+    borderRadius: 5,
+  },
+  typeStyle: {
+    fontSize: 15,
+    marginRight: 10,
+  },
+  typeViewStyle: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 15,
+  },
+  selectStyle: {},
+  dropDownPicker: {},
+  buttonContainer: {
+    flexDirection: "row",
+    marginTop: 15,
+    padding: 5,
+    width: "100%",
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    justifyContent: "space-evenly",
+    borderTopWidth: 0.2,
+  },
+  cancelButtonStyle: {},
+  submitButtonStyle: {},
 });
 
 const styledSmallRectangle = StyleSheet.create({
@@ -91,65 +140,22 @@ const styledBigRectangle = StyleSheet.create({
   },
 });
 
-const appTitleFontStyles = StyleSheet.create({
+const appFontStyles = StyleSheet.create({
   titleText: {
-    fontFamily: "DamascusSemiBold",
+    fontFamily: "System",
     fontSize: 30,
     marginTop: 45,
     color: "white",
   },
-});
-
-const inputStyles = StyleSheet.create({
-  workoutNameInput: {
-    color: "white",
-    fontSize: 20,
-    height: 40,
-    fontWeight: "bold",
-  },
-  typeStyle: {
-    color: "white",
-    fontSize: 20,
-    paddingTop: 10,
-  },
-  typeViewStyle: {
-    flexDirection: "row",
-  },
-});
-
-const buttonView = StyleSheet.create({
-  cancelButtonStyle: {
-    flexDirection: "row",
-    marginTop: 15,
-    backgroundColor: "white",
-    borderRadius: 10,
-    borderColor: "red",
-    borderWidth: 2,
-  },
-  submitButtonStyle: {
-    flexDirection: "row",
-    marginTop: 15,
-    backgroundColor: "white",
-    borderRadius: 10,
-    marginLeft: 20,
-    borderColor: "red",
-    borderWidth: 2,
-  },
-  selectStyle: {
-    flexDirection: "row",
-    borderRadius: 10,
-    marginLeft: 10,
-    marginTop: 2,
-    borderColor: "red",
-  },
   workoutInfoStyle: {
     flexDirection: "column",
     marginTop: 10,
+    marginLeft: 10,
   },
   workoutInfoText: {
     color: "red",
     fontSize: 15,
-    fontFamily: "DamascusSemiBold",
+    fontFamily: "System",
   },
 });
 
@@ -236,7 +242,7 @@ const Workouts = ({ navigation }) => {
     >
       <ScrollView>
         <StyledContainer>
-          <PageTitle style={appTitleFontStyles.titleText}>FiitTrack</PageTitle>
+          <PageTitle style={appFontStyles.titleText}>FiitTrack</PageTitle>
           <View
             style={{
               flexDirection: "row",
@@ -251,23 +257,25 @@ const Workouts = ({ navigation }) => {
               visible={modalVisible}
               onDismiss={toggleModalVisibility}
             >
-              <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                  <View>
-                    <TextInput
-                      style={inputStyles.workoutNameInput}
-                      placeholder="Enter Workout Name..."
-                      placeholderTextColor={"white"}
-                      keyboardAppearance={"dark"}
-                      spellCheck={false}
-                      textAlign={"center"}
-                      value={workoutName}
-                      onChangeText={(value) => setWorkoutName(value)}
-                    />
+              <View style={modalDialog.centeredView}>
+                <View style={modalDialog.modalView}>
+                  <View style={modalDialog.titleView}>
+                    <Text style={modalDialog.modalTitle}>
+                      Create a New Workout
+                    </Text>
                   </View>
-                  <View style={inputStyles.typeViewStyle}>
-                    <Text style={inputStyles.typeStyle}>Workout Type:</Text>
-                    <View style={buttonView.selectStyle}>
+                  <TextInput
+                    style={modalDialog.workoutNameInput}
+                    placeholder="Enter Workout Name..."
+                    placeholderTextColor={"black"}
+                    keyboardAppearance={"dark"}
+                    spellCheck={false}
+                    value={workoutName}
+                    onChangeText={(value) => setWorkoutName(value)}
+                  />
+                  <View style={modalDialog.typeViewStyle}>
+                    <Text style={modalDialog.typeStyle}>Workout Type:</Text>
+                    <View style={modalDialog.selectStyle}>
                       <DropDownPicker
                         items={[
                           { label: "Item 1", value: "Item 1" },
@@ -277,11 +285,8 @@ const Workouts = ({ navigation }) => {
                           { label: "Item 5", value: "Item 5" },
                         ]}
                         containerStyle={{
-                          height: 40,
                           width: 150,
-                          marginBottom: 5,
                         }}
-                        style={{ backgroundColor: "#fafafa" }}
                         dropDownStyle={{ backgroundColor: "#fafafa" }}
                         onChangeItem={(item) =>
                           console.log(item.label, item.value)
@@ -289,15 +294,20 @@ const Workouts = ({ navigation }) => {
                       />
                     </View>
                   </View>
-                  <View style={{ flexDirection: "row" }}>
-                    <View style={buttonView.cancelButtonStyle}>
+                  <View style={modalDialog.buttonContainer}>
+                    <View style={modalDialog.cancelButtonStyle}>
                       <Button
                         title="Cancel"
                         onPress={toggleModalVisibility}
                         style={{ marginRight: 20 }}
                       />
                     </View>
-                    <View style={buttonView.submitButtonStyle}>
+                    <View
+                      style={{
+                        borderRightWidth: 0.2,
+                      }}
+                    />
+                    <View style={modalDialog.submitButtonStyle}>
                       <Button
                         title="Submit"
                         onPress={handleSubmit}
@@ -314,7 +324,7 @@ const Workouts = ({ navigation }) => {
                 style={{
                   color: "red",
                   fontSize: 20,
-                  fontFamily: "DamascusSemiBold",
+                  fontFamily: "System",
                 }}
               >
                 Workouts
@@ -331,8 +341,9 @@ const Workouts = ({ navigation }) => {
                   <AntDesign name="minuscircle" size={25} color="white" />
                 </DeleteIcon>
                 <TextInput
-                  style={inputStyles.workoutNameInput}
+                  style={styles.workoutNameInput}
                   value={obj.name}
+                  editable={false}
                 />
                 <View
                   style={{
@@ -340,23 +351,25 @@ const Workouts = ({ navigation }) => {
                     borderBottomWidth: 2.5,
                   }}
                 ></View>
-                <View style={buttonView.workoutInfoStyle}>
+                <View style={appFontStyles.workoutInfoStyle}>
                   <View style={{ flexDirection: "row" }}>
-                    <Text style={buttonView.workoutInfoText}>
+                    <Text style={appFontStyles.workoutInfoText}>
                       Date Completed:{" "}
                     </Text>
                     <Text
                       style={{
                         color: "white",
                         fontSize: 15,
-                        fontFamily: "DamascusSemiBold",
+                        fontFamily: "System",
                       }}
                     >
                       {currentDate}
                     </Text>
                   </View>
-                  <Text style={buttonView.workoutInfoText}>Workout Type: </Text>
-                  <Text style={buttonView.workoutInfoText}>Duration: </Text>
+                  <Text style={appFontStyles.workoutInfoText}>
+                    Workout Type:{" "}
+                  </Text>
+                  <Text style={appFontStyles.workoutInfoText}>Duration: </Text>
                 </View>
               </View>
             );

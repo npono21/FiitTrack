@@ -1,17 +1,5 @@
 import styled from "styled-components";
 
-import { StyleSheet } from "react-native";
-
-import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  RecyclerViewBackedScrollViewComponent,
-  EdgeInsetsPropType,
-} from "react-native";
-
 // colors .
 export const Colors = {
   primary: "#ffffff",
@@ -30,18 +18,6 @@ export const BackgroundImage = styled.Image`
   width: 100%;
   blurRadius: {1};
 `;
-
-/*
-const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    //blurRadius: {1}
-  },
-});
-*/
 
 export const StyledContainer = styled.View`
   flex: 1;
