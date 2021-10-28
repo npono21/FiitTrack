@@ -21,144 +21,14 @@ import {
   DeleteIcon,
   AddIcon,
   MeasurementsButton,
-  StyledSmallRectangle,
 } from "../components/styles";
 
-const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-  },
-  menuBarStyles: {
-    backgroundColor: "black",
-    height: 75,
-    width: "100%",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  },
-  menuIconStyles: {
-    flexDirection: "row",
-    padding: 5,
-    justifyContent: "space-evenly",
-  },
-  workoutNameInput: {
-    color: "white",
-    fontSize: 25,
-    height: 40,
-    fontWeight: "bold",
-    marginLeft: 10,
-  },
-});
-
-const modalDialog = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    backgroundColor: "white",
-    borderRadius: 20,
-    width: "85%",
-  },
-  modalTitle: {
-    fontSize: 22,
-    fontWeight: "500",
-  },
-  titleView: {
-    width: "100%",
-    alignItems: "center",
-    marginTop: 20,
-  },
-  workoutNameInput: {
-    fontSize: 15,
-    height: 40,
-    marginTop: 15,
-    paddingLeft: 10,
-    width: "85%",
-    marginLeft: 22,
-    borderWidth: 1.5,
-    borderColor: "rgba(255, 0, 0, 0.5)",
-    borderRadius: 10,
-  },
-  typeStyle: {
-    fontSize: 15,
-    marginRight: 10,
-  },
-  typeViewStyle: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 15,
-  },
-  selectStyle: {},
-  dropDownPicker: {},
-  buttonContainer: {
-    flexDirection: "row",
-    marginTop: 15,
-    padding: 5,
-    width: "100%",
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    justifyContent: "space-evenly",
-    borderTopWidth: 0.2,
-  },
-  cancelButtonStyle: {},
-  submitButtonStyle: {},
-});
-
-const styledSmallRectangle = StyleSheet.create({
-  rectangle: {
-    marginTop: 15,
-    marginLeft: 0,
-    borderBottomLeftRadius: 0,
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 25,
-    paddingRight: 10,
-    backgroundColor: "rgba(81, 81, 81, 0.5)",
-    width: 130,
-  },
-});
-
-const styledBigRectangle = StyleSheet.create({
-  bigRectangle: {
-    width: 360,
-    marginTop: 10,
-    marginLeft: 0,
-    borderRadius: 28,
-    padding: 10,
-    backgroundColor: "rgba(81, 81, 81, 0.35)",
-    alignSelf: "center",
-    borderWidth: 2,
-    borderColor: "red",
-  },
-});
-
-const appFontStyles = StyleSheet.create({
-  titleText: {
-    fontFamily: "System",
-    fontSize: 30,
-    marginTop: 45,
-    color: "white",
-  },
-  workoutInfoStyle: {
-    flexDirection: "column",
-    marginTop: 10,
-    marginLeft: 10,
-  },
-  workoutInfoText: {
-    color: "red",
-    fontSize: 15,
-    fontFamily: "System",
-  },
-});
+import {
+  modalDialog,
+  styles,
+  styledRectangle,
+  appFontStyles,
+} from "../components/stylesWorkouts";
 
 const initialWorkoutsList = [];
 
@@ -336,7 +206,7 @@ const Workouts = ({ navigation }) => {
                 </View>
               </View>
             </Modal>
-            <View style={styledSmallRectangle.rectangle}>
+            <View style={styledRectangle.smallRectangle}>
               <Text
                 style={{
                   color: "red",
@@ -353,7 +223,7 @@ const Workouts = ({ navigation }) => {
           </View>
           {workoutsList.map((obj, index) => {
             return (
-              <View style={styledBigRectangle.bigRectangle} key={index}>
+              <View style={styledRectangle.bigRectangle} key={index}>
                 <DeleteIcon onPress={() => handleDeleteIconClick(obj.id)}>
                   <AntDesign name="minuscircle" size={25} color="white" />
                 </DeleteIcon>
@@ -399,8 +269,8 @@ const Workouts = ({ navigation }) => {
           })}
         </StyledContainer>
       </ScrollView>
-      <View style={styles.menuBarStyles}>
-        <View style={styles.menuIconStyles}>
+      <View style={styles.menuBarStyle}>
+        <View style={styles.menuIconStyle}>
           <AntDesign name="home" size={45} color="red" />
           <MeasurementsButton
             onPress={() => navigation.navigate("Measurements")}

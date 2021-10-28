@@ -39,7 +39,7 @@ const Measurements = ({ navigation }) => {
     >
       <ScrollView>
         <StyledContainer>
-          <PageTitle style={appFontStyles.titleText}>FiitTrack</PageTitle>
+          {/* <PageTitle style={appFontStyles.titleText}>FiitTrack</PageTitle> */}
         </StyledContainer>
       </ScrollView>
       <View style={styles.menuBarStyles}>

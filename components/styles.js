@@ -9,9 +9,21 @@ export const Colors = {
   brand: "#6D28D9",
   green: "#10B981",
   red: red,
+  black: black,
+  white: white,
 };
 
-const { primary, secondary, tertiary, darkLight, brand, green, red } = Colors;
+const {
+  primary,
+  secondary,
+  tertiary,
+  darkLight,
+  brand,
+  green,
+  red,
+  black,
+  white,
+} = Colors;
 
 export const BackgroundImage = styled.Image`
   height: 100%;
@@ -38,7 +50,6 @@ export const PageLogo = styled.Image`
   height: 200px;
 `;
 
-//prettier-ignore
 export const PageTitle = styled.Text`
   font-size: 50px;
   text-align: center;
@@ -196,19 +207,4 @@ export const MeasurementsButton = styled.TouchableOpacity`
 
 export const HomeButton = styled.TouchableOpacity`
   z-index: 1;
-`;
-
-export const StyledSmallRectangle = styled.View`
-  margin-top: 15px;
-  margin-left: 0px;
-  border-bottom-left-radius: 0px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 25px;
-  padding-right: 10px;
-  background-color: "rgba(81, 81, 81, 0.5)";
-  width: 130px;
 `;
