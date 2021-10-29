@@ -201,15 +201,7 @@ const Workouts = ({ navigation }) => {
               </View>
             </Modal>
             <View style={commonAppStyles.workoutsSubtitleContainer}>
-              <Text
-                style={{
-                  color: "red",
-                  fontSize: 20,
-                  fontFamily: "System",
-                }}
-              >
-                Workouts
-              </Text>
+              <Text style={commonAppStyles.subtitleStyle}>Workouts</Text>
             </View>
             <TouchableOpacity
               style={styles.deleteAddIcon}
@@ -243,23 +235,11 @@ const Workouts = ({ navigation }) => {
                     <Text style={appFontStyles.workoutInfoText}>
                       Date Completed:{" "}
                     </Text>
-                    <Text
-                      style={{
-                        color: "white",
-                        fontSize: 15,
-                        fontFamily: "System",
-                      }}
-                    >
+                    <Text style={commonAppStyles.regularTextStyle}>
                       {currentDate}
                     </Text>
                   </View>
-                  <Text
-                    style={{
-                      color: "white",
-                      fontSize: 15,
-                      fontFamily: "System",
-                    }}
-                  >
+                  <Text style={commonAppStyles.regularTextStyle}>
                     {obj.type}
                   </Text>
                   <Text style={appFontStyles.workoutInfoText}>Duration: </Text>

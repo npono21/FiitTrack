@@ -30,6 +30,16 @@ const commonAppStyles = StyleSheet.create({
     marginTop: 45,
     fontFamily: "System",
   },
+  subtitleStyle: {
+    color: "red",
+    fontSize: 20,
+    fontFamily: "System",
+  },
+  regularTextStyle: {
+    color: "white",
+    fontSize: 15,
+    fontFamily: "System",
+  },
   styledContainer: {
     flex: 1,
     height: "100%",
