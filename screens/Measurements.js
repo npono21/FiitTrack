@@ -1,33 +1,16 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React from "react";
 
-import { StyleSheet, View, ImageBackground, ScrollView } from "react-native";
+import {
+  View,
+  ImageBackground,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 
 import { AntDesign } from "@expo/vector-icons";
 
-import { StyledContainer, HomeButton } from "../components/styles";
-
-import { styledSmallRectangle, titleText } from "../screens/Workouts";
-
-const styles = StyleSheet.create({
-  menuBarStyles: {
-    backgroundColor: "black",
-    height: 75,
-    width: "100%",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  },
-  menuIconStyles: {
-    flexDirection: "row",
-    padding: 5,
-    justifyContent: "space-evenly",
-  },
-  image: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-  },
-});
+import { commonAppStyles } from "../components/commonStylesApp";
 
 const Measurements = ({ navigation }) => {
   return (
@@ -35,19 +18,37 @@ const Measurements = ({ navigation }) => {
       blurRadius={10}
       resizeMode="cover"
       source={require("../assets/firstScreen.jpg")}
-      style={styles.image}
+      style={commonAppStyles.image}
     >
       <ScrollView>
-        <StyledContainer>
-          {/* <PageTitle style={appFontStyles.titleText}>FiitTrack</PageTitle> */}
-        </StyledContainer>
+        <View style={commonAppStyles.styledContainer}>
+          <Text style={commonAppStyles.appPageTitle}>FiitTrack</Text>
+        </View>
+        <View style={commonAppStyles.measurementsSubtitleContainer}>
+          <View>
+            <Text
+              style={{
+                color: "red",
+                fontSize: 20,
+                fontFamily: "System",
+              }}
+            >
+              Measurements
+            </Text>
+          </View>
+        </View>
       </ScrollView>
-      <View style={styles.menuBarStyles}>
-        <View style={styles.menuIconStyles}>
-          <HomeButton onPress={() => navigation.navigate("Workouts")}>
-            <AntDesign name="home" size={45} color="red" />
-          </HomeButton>
-          <AntDesign name="barschart" size={45} color="red" />
+      <View style={commonAppStyles.menuBarStyle}>
+        <View style={commonAppStyles.menuIconStyle}>
+          <AntDesign
+            name="home"
+            size={45}
+            color="red"
+            onPress={() => navigation.navigate("Workouts")}
+          />
+          <TouchableOpacity style={commonAppStyles.measurementsButton}>
+            <AntDesign name="barschart" size={45} color="red" />
+          </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>

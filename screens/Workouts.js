@@ -1,7 +1,6 @@
-import React, { useState, useReducer, useEffect, Component } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import {
   ImageBackground,
-  StyleSheet,
   View,
   Text,
   TextInput,
@@ -9,6 +8,7 @@ import {
   Modal,
   ScrollView,
   Alert,
+  TouchableOpacity,
 } from "react-native";
 
 import { AntDesign } from "@expo/vector-icons";
@@ -16,19 +16,13 @@ import { AntDesign } from "@expo/vector-icons";
 import DropDownPicker from "react-native-dropdown-picker";
 
 import {
-  StyledContainer,
-  PageTitle,
-  DeleteIcon,
-  AddIcon,
-  MeasurementsButton,
-} from "../components/styles";
-
-import {
   modalDialog,
   styles,
   styledRectangle,
   appFontStyles,
 } from "../components/stylesWorkouts";
+
+import { commonAppStyles } from "../components/commonStylesApp";
 
 const initialWorkoutsList = [];
 
@@ -122,11 +116,11 @@ const Workouts = ({ navigation }) => {
       blurRadius={10}
       resizeMode="cover"
       source={require("../assets/firstScreen.jpg")}
-      style={styles.image}
+      style={commonAppStyles.image}
     >
       <ScrollView>
-        <StyledContainer>
-          <PageTitle style={appFontStyles.titleText}>FiitTrack</PageTitle>
+        <View style={commonAppStyles.styledContainer}>
+          <Text style={commonAppStyles.appPageTitle}>FiitTrack</Text>
           <View
             style={{
               flexDirection: "row",
@@ -206,7 +200,7 @@ const Workouts = ({ navigation }) => {
                 </View>
               </View>
             </Modal>
-            <View style={styledRectangle.smallRectangle}>
+            <View style={commonAppStyles.workoutsSubtitleContainer}>
               <Text
                 style={{
                   color: "red",
@@ -217,16 +211,22 @@ const Workouts = ({ navigation }) => {
                 Workouts
               </Text>
             </View>
-            <AddIcon onPress={handleAddIconClick}>
+            <TouchableOpacity
+              style={styles.deleteAddIcon}
+              onPress={handleAddIconClick}
+            >
               <AntDesign name="pluscircle" size={25} color="red" />
-            </AddIcon>
+            </TouchableOpacity>
           </View>
           {workoutsList.map((obj, index) => {
             return (
-              <View style={styledRectangle.bigRectangle} key={index}>
-                <DeleteIcon onPress={() => handleDeleteIconClick(obj.id)}>
+              <View style={styledRectangle.workoutInfoContainer} key={index}>
+                <TouchableOpacity
+                  style={styles.deleteAddIcon}
+                  onPress={() => handleDeleteIconClick(obj.id)}
+                >
                   <AntDesign name="minuscircle" size={25} color="white" />
-                </DeleteIcon>
+                </TouchableOpacity>
                 <TextInput
                   style={styles.workoutNameInput}
                   value={obj.name}
@@ -267,16 +267,17 @@ const Workouts = ({ navigation }) => {
               </View>
             );
           })}
-        </StyledContainer>
+        </View>
       </ScrollView>
-      <View style={styles.menuBarStyle}>
-        <View style={styles.menuIconStyle}>
+      <View style={commonAppStyles.menuBarStyle}>
+        <View style={commonAppStyles.menuIconStyle}>
           <AntDesign name="home" size={45} color="red" />
-          <MeasurementsButton
+          <TouchableOpacity
+            style={commonAppStyles.measurementsButton}
             onPress={() => navigation.navigate("Measurements")}
           >
             <AntDesign name="barschart" size={45} color="red" />
-          </MeasurementsButton>
+          </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>

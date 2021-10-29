@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Formik } from "formik";
-import { ImageBackground, View, StyleSheet } from "react-native";
+import { ImageBackground, View, StyleSheet, Text } from "react-native";
 import { Octicons, Ionicons, Fontisto } from "@expo/vector-icons";
 
 import {
-  StyledContainer,
   InnerContainer,
-  PageLogo,
-  PageTitle,
   SubTitle,
   StyledFormArea,
   LeftIcon,
@@ -24,7 +21,7 @@ import {
   ExtraView,
   TextLink,
   TextLinkContent,
-} from "./../components/styles";
+} from "./../components/stylesLoginRegister";
 
 //Color Structuring
 const { brand, darkLight, primary } = Colors;
@@ -32,13 +29,14 @@ const { brand, darkLight, primary } = Colors;
 //Keyboard avoiding wrapper.
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 
+import { commonAppStyles } from "../components/commonStylesApp";
+
 const styles = StyleSheet.create({
   image: {
     flex: 1,
     width: "100%",
     height: "100%",
     justifyContent: "center",
-    //blurRadius: {1}
   },
 });
 
@@ -54,10 +52,12 @@ const Login = ({ navigation }) => {
         style={styles.image}
         position="absolute"
       >
-        <StyledContainer>
+        <View style={commonAppStyles.styledContainer}>
           <StatusBar style="dark" />
           <InnerContainer>
-            <PageTitle>FiitTrack</PageTitle>
+            <Text style={commonAppStyles.loginRegsiterPageTitle}>
+              FiitTrack
+            </Text>
             <SubTitle>Account Login</SubTitle>
             <Formik
               initialValues={{ email: "", password: "" }}
@@ -110,7 +110,7 @@ const Login = ({ navigation }) => {
               )}
             </Formik>
           </InnerContainer>
-        </StyledContainer>
+        </View>
       </ImageBackground>
     </KeyboardAvoidingWrapper>
   );

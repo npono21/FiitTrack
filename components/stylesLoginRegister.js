@@ -186,25 +186,3 @@ export const HomeTitle = styled.Text`
   color: red;
   margin-top: 100px;
 `;
-
-export const DeleteIcon = styled.TouchableOpacity`
-  top: 15px;
-  right: 25px;
-  position: absolute;
-  z-index: 1;
-`;
-
-export const AddIcon = styled.TouchableOpacity`
-  top: 15px;
-  right: 25px;
-  position: absolute;
-  z-index: 1;
-`;
-
-export const MeasurementsButton = styled.TouchableOpacity`
-  z-index: 1;
-`;
-
-export const HomeButton = styled.TouchableOpacity`
-  z-index: 1;
-`;

@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { StyleSheet } from "react-native";
 
 // colors
@@ -13,8 +12,6 @@ export const Colors = {
 };
 
 const { red } = Colors;
-
-export const TitleBox = styled.View``;
 
 const modalDialog = StyleSheet.create({
   centeredView: {
@@ -75,24 +72,6 @@ const modalDialog = StyleSheet.create({
 });
 
 const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-  },
-  menuBarStyle: {
-    flexDirection: "column",
-    backgroundColor: "rgba(0, 0, 0, 1)",
-    height: 75,
-    width: "100%",
-    justifyContent: "space-between",
-  },
-  menuIconStyle: {
-    flexDirection: "row",
-    padding: 5,
-    justifyContent: "space-evenly",
-  },
   workoutNameInput: {
     color: "rgba(255, 255, 255, 1)",
     fontSize: 25,
@@ -100,10 +79,19 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginLeft: 10,
   },
+  deleteAddIcon: {
+    top: 15,
+    right: 25,
+    position: "absolute",
+    zIndex: 1,
+  },
+  measurementsButton: {
+    zIndex: 1,
+  },
 });
 
 const styledRectangle = StyleSheet.create({
-  bigRectangle: {
+  workoutInfoContainer: {
     width: 360,
     marginTop: 10,
     marginLeft: 0,
@@ -113,20 +101,6 @@ const styledRectangle = StyleSheet.create({
     alignSelf: "center",
     borderWidth: 2,
     borderColor: "red",
-  },
-  smallRectangle: {
-    marginTop: 15,
-    marginLeft: 0,
-    borderBottomLeftRadius: 0,
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 25,
-    paddingRight: 10,
-    backgroundColor: "rgba(81, 81, 81, 0.5)",
-    width: 130,
   },
 });
 

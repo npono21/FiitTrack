@@ -5,8 +5,6 @@ import { Octicons, Ionicons, Fontisto } from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 import {
-  StyledContainer,
-  PageTitle,
   StyledInputLabel,
   StyledFormArea,
   StyledButton,
@@ -23,21 +21,21 @@ import {
   TextLinkContent,
   SubTitle,
   Colors,
-} from "./../components/styles";
+} from "./../components/stylesLoginRegister";
+
 import {
   View,
   TouchableOpacity,
   Platform,
   Text,
-  TextInput,
-  Pressable,
-  KeyboardAvoidingView,
   ImageBackground,
   StyleSheet,
 } from "react-native";
 
+import { commonAppStyles } from "../components/commonStylesApp";
+
 //Color Structuring
-const { brand, darkLight, primary } = Colors;
+const { darkLight } = Colors;
 
 //Keyboard avoiding wrapper.
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
@@ -71,7 +69,7 @@ const Signup = ({ navigation }) => {
 
   return (
     <KeyboardAvoidingWrapper>
-      <StyledContainer>
+      <View style={commonAppStyles.styledContainer}>
         <ImageBackground
           blurRadius={8}
           resizeMode="cover"
@@ -94,7 +92,7 @@ const Signup = ({ navigation }) => {
           )}
 
           <InnerContainer>
-            <PageTitle>FitTrack</PageTitle>
+            <Text style={commonAppStyles.loginRegsiterPageTitle}>FitTrack</Text>
             <SubTitle>Account Signup</SubTitle>
 
             <Formik
@@ -185,7 +183,7 @@ const Signup = ({ navigation }) => {
             </Formik>
           </InnerContainer>
         </ImageBackground>
-      </StyledContainer>
+      </View>
     </KeyboardAvoidingWrapper>
   );
 };

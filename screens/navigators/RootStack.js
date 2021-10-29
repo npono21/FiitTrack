@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Colors } from "../../components/styles";
+import { Colors } from "../../components/stylesLoginRegister";
 const { primary, tertiary } = Colors;
 
 //React Navigation
