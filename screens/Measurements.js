@@ -12,6 +12,7 @@ import {
 } from "react-native";
 
 import { AntDesign } from "@expo/vector-icons";
+
 import DropDownPicker from "react-native-dropdown-picker";
 
 import { commonAppStyles } from "../components/commonStylesApp";
@@ -19,12 +20,6 @@ import { commonAppStyles } from "../components/commonStylesApp";
 import { stylesMeasurements } from "../components/stylesMeasurements";
 
 import { modalDialog } from "../components/stylesWorkouts";
-
-// const pastMeasurementDates = [
-//   { label: "Date 1", value: "Date 1" },
-//   { label: "Date 2", value: "Date 2" },
-//   { label: "Date 3", value: "Date 3" },
-// ];
 
 const Measurements = ({ navigation }) => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -36,6 +31,18 @@ const Measurements = ({ navigation }) => {
     { label: "Date 2", value: "Date 2" },
     { label: "Date 3", value: "Date 3" },
   ]);
+  const [chest, setChest] = useState("");
+  const [shoulders, setShoulders] = useState("");
+  const [rightArm, setRightArm] = useState("");
+  const [leftArm, setLeftArm] = useState("");
+  const [rightGlute, setRightGlute] = useState("");
+  const [leftGlute, setLeftGlute] = useState("");
+  const [waist, setWaist] = useState("");
+  const [rightThigh, setRightThigh] = useState("");
+  const [leftThigh, setLeftThigh] = useState("");
+  const [rigthCalve, setRightCalve] = useState("");
+  const [leftCalve, setLeftCalve] = useState("");
+  const [neck, setNeck] = useState("");
 
   return (
     <ImageBackground
@@ -73,10 +80,7 @@ const Measurements = ({ navigation }) => {
                   borderWidth: 0,
                   width: 305,
                 }}
-                textStyle={{
-                  fontSize: 15,
-                  fontFamily: "System",
-                }}
+                textStyle={commonAppStyles.regularTextStyle}
                 dropDownContainerStyle={{
                   backgroundColor: "white",
                 }}
@@ -86,7 +90,7 @@ const Measurements = ({ navigation }) => {
           <View style={stylesMeasurements.weightInputContainer}>
             <Text style={stylesMeasurements.textStyle}>Weight:</Text>
             <TextInput
-              style={{ width: 75, textAlign: "center" }}
+              style={{ width: 75, textAlign: "center", height: 25 }}
               keyboardType={"numeric"}
               keyboardAppearance={"dark"}
               backgroundColor={"white"}
@@ -103,42 +107,315 @@ const Measurements = ({ navigation }) => {
             />
             <Text style={stylesMeasurements.textStyle}>KG</Text>
           </View>
+
           <View style={stylesMeasurements.measurmentBoxContainer}>
             <View style={stylesMeasurements.measurementLRBoxContainer}>
               <View style={stylesMeasurements.measurementContainer}>
-                <Text style={stylesMeasurements.textStyle}>Chest</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text style={stylesMeasurements.textStyle}>Chest</Text>
+                  <AntDesign name="infocirlce" size={20} color="red" />
+                </View>
+                <View style={{ alignSelf: "center", marginTop: 10 }}>
+                  <TextInput
+                    style={stylesMeasurements.measurementInputStyle}
+                    keyboardType={"numeric"}
+                    keyboardAppearance={"dark"}
+                    backgroundColor={"white"}
+                    value={chest}
+                    onChangeText={(value) => setChest(value)}
+                  />
+                </View>
               </View>
+
               <View style={stylesMeasurements.measurementContainer}>
-                <Text style={stylesMeasurements.textStyle}>Shoulders</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text style={stylesMeasurements.textStyle}>Shoulders</Text>
+                  <AntDesign name="infocirlce" size={20} color="red" />
+                </View>
+                <View style={{ alignSelf: "center", marginTop: 10 }}>
+                  <TextInput
+                    style={stylesMeasurements.measurementInputStyle}
+                    textStyle={{ color: "red" }}
+                    keyboardType={"numeric"}
+                    keyboardAppearance={"dark"}
+                    backgroundColor={"white"}
+                    value={shoulders}
+                    onChangeText={(value) => setShoulders(value)}
+                  />
+                </View>
               </View>
+
               <View style={stylesMeasurements.measurementContainer}>
-                <Text style={stylesMeasurements.textStyle}>Arms</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text style={stylesMeasurements.textStyle}>Arms</Text>
+                  <AntDesign name="infocirlce" size={20} color="red" />
+                </View>
+                <View
+                  style={{
+                    flexDirection: "column",
+                    //marginTop: 2.5,
+                  }}
+                >
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={stylesMeasurements.textStyle}>
+                      {"  "}L:{"  "}
+                    </Text>
+                    <TextInput
+                      style={stylesMeasurements.measurementInputStyle}
+                      textStyle={{ color: "red" }}
+                      keyboardType={"numeric"}
+                      keyboardAppearance={"dark"}
+                      backgroundColor={"white"}
+                      value={leftArm}
+                      onChangeText={(value) => setLeftArm(value)}
+                    />
+                  </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={stylesMeasurements.textStyle}>
+                      {"  "}R:{"  "}
+                    </Text>
+                    <TextInput
+                      style={stylesMeasurements.measurementInputStyle}
+                      textStyle={{ color: "red" }}
+                      keyboardType={"numeric"}
+                      keyboardAppearance={"dark"}
+                      backgroundColor={"white"}
+                      value={rightArm}
+                      onChangeText={(value) => setRightArm(value)}
+                    />
+                  </View>
+                </View>
               </View>
+
               <View style={stylesMeasurements.measurementContainer}>
-                <Text style={stylesMeasurements.textStyle}>Glutes</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text style={stylesMeasurements.textStyle}>Glutes</Text>
+                  <AntDesign name="infocirlce" size={20} color="red" />
+                </View>
+                <View
+                  style={{
+                    flexDirection: "column",
+                  }}
+                >
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={stylesMeasurements.textStyle}>
+                      {"  "}L:{"  "}
+                    </Text>
+                    <TextInput
+                      style={stylesMeasurements.measurementInputStyle}
+                      textStyle={{ color: "red" }}
+                      keyboardType={"numeric"}
+                      keyboardAppearance={"dark"}
+                      backgroundColor={"white"}
+                      value={leftGlute}
+                      onChangeText={(value) => setLeftGlute(value)}
+                    />
+                  </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={stylesMeasurements.textStyle}>
+                      {"  "}R:{"  "}
+                    </Text>
+                    <TextInput
+                      style={stylesMeasurements.measurementInputStyle}
+                      textStyle={{ color: "red" }}
+                      keyboardType={"numeric"}
+                      keyboardAppearance={"dark"}
+                      backgroundColor={"white"}
+                      value={rightGlute}
+                      onChangeText={(value) => setRightGlute(value)}
+                    />
+                  </View>
+                </View>
               </View>
             </View>
+
             <View style={stylesMeasurements.measurementLRBoxContainer}>
               <View style={stylesMeasurements.measurementContainer}>
-                <Text style={stylesMeasurements.textStyle}>Waist</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text style={stylesMeasurements.textStyle}>Waist</Text>
+                  <AntDesign name="infocirlce" size={20} color="red" />
+                </View>
+                <View style={{ alignSelf: "center", marginTop: 10 }}>
+                  <TextInput
+                    style={stylesMeasurements.measurementInputStyle}
+                    textStyle={{ color: "red" }}
+                    keyboardType={"numeric"}
+                    keyboardAppearance={"dark"}
+                    backgroundColor={"white"}
+                    value={waist}
+                    onChangeText={(value) => setWaist(value)}
+                  />
+                </View>
               </View>
+
               <View style={stylesMeasurements.measurementContainer}>
-                <Text style={stylesMeasurements.textStyle}>Thighs</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text style={stylesMeasurements.textStyle}>Thighs</Text>
+                  <AntDesign name="infocirlce" size={20} color="red" />
+                </View>
+                <View
+                  style={{
+                    flexDirection: "column",
+                  }}
+                >
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={stylesMeasurements.textStyle}>
+                      {"  "}L:{"  "}
+                    </Text>
+                    <TextInput
+                      style={stylesMeasurements.measurementInputStyle}
+                      textStyle={{ color: "red" }}
+                      keyboardType={"numeric"}
+                      keyboardAppearance={"dark"}
+                      backgroundColor={"white"}
+                      value={leftThigh}
+                      onChangeText={(value) => setLeftThigh(value)}
+                    />
+                  </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={stylesMeasurements.textStyle}>
+                      {"  "}R:{"  "}
+                    </Text>
+                    <TextInput
+                      style={stylesMeasurements.measurementInputStyle}
+                      textStyle={{ color: "red" }}
+                      keyboardType={"numeric"}
+                      keyboardAppearance={"dark"}
+                      backgroundColor={"white"}
+                      value={rightThigh}
+                      onChangeText={(value) => setRightThigh(value)}
+                    />
+                  </View>
+                </View>
               </View>
+
               <View style={stylesMeasurements.measurementContainer}>
-                <Text style={stylesMeasurements.textStyle}>Calves</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text style={stylesMeasurements.textStyle}>Calves</Text>
+                  <AntDesign name="infocirlce" size={20} color="red" />
+                </View>
+                <View
+                  style={{
+                    flexDirection: "column",
+                  }}
+                >
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={stylesMeasurements.textStyle}>
+                      {"  "}L:{"  "}
+                    </Text>
+                    <TextInput
+                      style={stylesMeasurements.measurementInputStyle}
+                      textStyle={{ color: "red" }}
+                      keyboardType={"numeric"}
+                      keyboardAppearance={"dark"}
+                      backgroundColor={"white"}
+                      value={leftCalve}
+                      onChangeText={(value) => setLeftCalve(value)}
+                    />
+                  </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={stylesMeasurements.textStyle}>
+                      {"  "}R:{"  "}
+                    </Text>
+                    <TextInput
+                      style={stylesMeasurements.measurementInputStyle}
+                      textStyle={{ color: "red" }}
+                      keyboardType={"numeric"}
+                      keyboardAppearance={"dark"}
+                      backgroundColor={"white"}
+                      value={rigthCalve}
+                      onChangeText={(value) => setRightCalve(value)}
+                    />
+                  </View>
+                </View>
               </View>
+
               <View style={stylesMeasurements.measurementContainer}>
-                <Text style={stylesMeasurements.textStyle}>Neck</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text style={stylesMeasurements.textStyle}>Neck</Text>
+                  <AntDesign name="infocirlce" size={20} color="red" />
+                </View>
+                <View style={{ alignSelf: "center", marginTop: 10 }}>
+                  <TextInput
+                    style={stylesMeasurements.measurementInputStyle}
+                    textStyle={{ color: "red" }}
+                    keyboardType={"numeric"}
+                    keyboardAppearance={"dark"}
+                    backgroundColor={"white"}
+                    value={neck}
+                    onChangeText={(value) => {
+                      setNeck(value);
+                      // console.log(value);
+                    }}
+                  />
+                </View>
               </View>
             </View>
           </View>
+
           <View
-            style={{ flexDirection: "row", justifyContent: "space-evenly" }}
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              backgroundColor: "white",
+              width: 250,
+              height: 45,
+              alignSelf: "center",
+              padding: 5,
+              marginTop: 10,
+              borderWidth: 1.5,
+              borderColor: "rgba(255, 0, 0, 0.5)",
+              borderRadius: 10,
+            }}
           >
             <View style={stylesMeasurements.saveClearButton}>
-              <Button title="Clear" style={{ textAlign: "center" }} />
+              <Button title="Clear" />
             </View>
+            <View
+              style={{
+                borderRightWidth: 2,
+              }}
+            />
             <View style={stylesMeasurements.saveClearButton}>
               <Button title="Save" />
             </View>
