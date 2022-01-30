@@ -34,6 +34,7 @@ const commonAppStyles = StyleSheet.create({
     color: "red",
     fontSize: 20,
     fontFamily: "System",
+    textAlign: "center",
   },
   regularTextStyle: {
     color: "white",
@@ -43,16 +44,23 @@ const commonAppStyles = StyleSheet.create({
   styledContainer: {
     flex: 1,
     height: "100%",
+    paddingTop: 25,
+  },
+  pageTitleContainer: {
+    flexDirection: "row",
+    //marginTop: 60,
+    justifyContent: "space-evenly",
+    alignItems: "center",
   },
   homeButton: {
     zIndex: 1,
   },
   menuBarStyle: {
-    backgroundColor: "black",
-    height: 75,
-    width: "100%",
-    flexDirection: "column",
-    justifyContent: "space-between",
+    backgroundColor: "navy",
+    borderRadius: 15,
+    marginTop: 25,
+    alignSelf: "center",
+    width: 175,
   },
   menuIconStyle: {
     flexDirection: "row",
@@ -60,10 +68,9 @@ const commonAppStyles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   image: {
-    flex: 1,
     width: "100%",
     height: "100%",
-    justifyContent: "center",
+    backgroundColor: "rgba(0, 0, 0, 0)",
   },
   measurementsButton: {
     zIndex: 1,
@@ -83,18 +90,14 @@ const commonAppStyles = StyleSheet.create({
     width: 130,
   },
   measurementsSubtitleContainer: {
-    marginTop: 15,
-    marginLeft: 0,
-    borderBottomLeftRadius: 0,
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 25,
-    paddingRight: 10,
-    backgroundColor: "rgba(81, 81, 81, 0.5)",
+    marginTop: 25,
+    marginLeft: 15,
+    borderRadius: 12.5,
     width: 175,
+    height: 225,
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    backgroundColor: "rgba(255, 255, 255, 1)",
   },
 });
 

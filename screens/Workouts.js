@@ -249,15 +249,17 @@ const Workouts = ({ navigation }) => {
           })}
         </View>
       </ScrollView>
-      <View style={commonAppStyles.menuBarStyle}>
-        <View style={commonAppStyles.menuIconStyle}>
-          <AntDesign name="home" size={45} color="red" />
-          <TouchableOpacity
-            style={commonAppStyles.measurementsButton}
-            onPress={() => navigation.navigate("Measurements")}
-          >
-            <AntDesign name="barschart" size={45} color="red" />
-          </TouchableOpacity>
+      <View>
+        <View style={commonAppStyles.menuBarStyle}>
+          <View style={commonAppStyles.menuIconStyle}>
+            <AntDesign name="home" size={45} color="red" />
+            <TouchableOpacity
+              style={commonAppStyles.measurementsButton}
+              onPress={() => navigation.navigate("Measurements")}
+            >
+              <AntDesign name="barschart" size={45} color="red" />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </ImageBackground>
