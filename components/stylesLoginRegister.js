@@ -1,17 +1,5 @@
 import styled from "styled-components";
 
-import { StyleSheet } from "react-native";
-
-import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  RecyclerViewBackedScrollViewComponent,
-  EdgeInsetsPropType,
-} from "react-native";
-
 // colors .
 export const Colors = {
   primary: "#ffffff",
@@ -21,27 +9,27 @@ export const Colors = {
   brand: "#6D28D9",
   green: "#10B981",
   red: red,
+  black: black,
+  white: white,
 };
 
-const { primary, secondary, tertiary, darkLight, brand, green, red } = Colors;
+const {
+  primary,
+  secondary,
+  tertiary,
+  darkLight,
+  brand,
+  green,
+  red,
+  black,
+  white,
+} = Colors;
 
 export const BackgroundImage = styled.Image`
   height: 100%;
   width: 100%;
   blurRadius: {1};
 `;
-
-/*
-const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    //blurRadius: {1}
-  },
-});
-*/
 
 export const StyledContainer = styled.View`
   flex: 1;
@@ -62,7 +50,6 @@ export const PageLogo = styled.Image`
   height: 200px;
 `;
 
-//prettier-ignore
 export const PageTitle = styled.Text`
   font-size: 50px;
   text-align: center;
@@ -198,26 +185,4 @@ export const HomeTitle = styled.Text`
   font-weight: bold;
   color: red;
   margin-top: 100px;
-`;
-
-export const DeleteIcon = styled.TouchableOpacity`
-  top: 15px;
-  right: 25px;
-  position: absolute;
-  z-index: 1;
-`;
-
-export const AddIcon = styled.TouchableOpacity`
-  top: 15px;
-  right: 25px;
-  position: absolute;
-  z-index: 1;
-`;
-
-export const MeasurementsButton = styled.TouchableOpacity`
-  z-index: 1;
-`;
-
-export const HomeButton = styled.TouchableOpacity`
-  z-index: 1;
 `;

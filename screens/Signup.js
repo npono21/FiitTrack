@@ -2,54 +2,12 @@ import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Formik } from "formik";
 import { Octicons, Ionicons, Fontisto } from "@expo/vector-icons";
-import DateTimePicker from "@react-native-community/datetimepicker";
 
-import {
-  StyledContainer,
-  PageTitle,
-  StyledInputLabel,
-  StyledFormArea,
-  StyledButton,
-  StyledTextInput,
-  LeftIcon,
-  RightIcon,
-  InnerContainer,
-  ButtonText,
-  MsgBox,
-  Line,
-  ExtraView,
-  ExtraText,
-  TextLink,
-  TextLinkContent,
-  SubTitle,
-  Colors,
-} from "./../components/styles";
-import {
-  View,
-  TouchableOpacity,
-  Platform,
-  Text,
-  TextInput,
-  Pressable,
-  KeyboardAvoidingView,
-  ImageBackground,
-  StyleSheet,
-} from "react-native";
+import { View, Platform, Text, TextInput, Button } from "react-native";
 
-//Color Structuring
-const { brand, darkLight, primary } = Colors;
+import ProgressBar from "react-native-progress/Bar";
 
-//Keyboard avoiding wrapper.
-import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
-
-const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-  },
-});
+import LottieView from "lottie-react-native";
 
 const Signup = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -64,171 +22,230 @@ const Signup = ({ navigation }) => {
     setDob(currentDate);
   };
 
-  const showDatePicker = () => {
-    console.log("DatePicker Called");
-    setShow(true);
-  };
-
   return (
-    <KeyboardAvoidingWrapper>
-      <StyledContainer>
-        <ImageBackground
-          blurRadius={8}
-          resizeMode="cover"
-          source={require("../assets/signupScreen.jpg")}
-          style={styles.image}
-        >
-          <StatusBar style="dark" />
-          {show && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={date}
-              mode="date"
-              is24Hour={true}
-              display="default"
-              onChange={onChange}
-              style={{
-                backgroundColor: "yellow",
-              }}
-            />
-          )}
-
-          <InnerContainer>
-            <PageTitle>FitTrack</PageTitle>
-            <SubTitle>Account Signup</SubTitle>
-
-            <Formik
-              initialValues={{
-                fullName: "",
-                email: "",
-                dateOfBirth: "",
-                password: "",
-                confirmPassword: "",
-              }}
-              onSubmit={(values) => {
-                console.log(values);
-              }}
-            >
-              {({ handleChange, handleBlur, handleSubmit, values }) => (
-                <StyledFormArea>
-                  <MyTextInput
-                    label="Full Name"
-                    icon="person"
-                    placeholder="John/Jane Doe"
-                    placeholderTextColor={darkLight}
-                    onChangeText={handleChange("fullName")}
-                    onBlur={handleBlur("fullName")}
-                    value={values.fullName}
-                  />
-                  <MyTextInput
-                    label="Email Address"
-                    icon="mail"
-                    placeholder="nickpon123@gmail.com"
-                    placeholderTextColor={darkLight}
-                    onChangeText={handleChange("email")}
-                    onBlur={handleBlur("email")}
-                    value={values.email}
-                    keyboardType="email-address"
-                  />
-                  <MyTextInput
-                    label="Date of Birth"
-                    placeholder="YYYY - MM - DD"
-                    placeholderTextColor={darkLight}
-                    onChangeText={handleChange("dateOfBirth")}
-                    onBlur={handleBlur("dateOfBirth")}
-                    value={dob ? dob.toDateString() : ""}
-                    icon="calendar"
-                    editable={false}
-                    isDate={true}
-                    showDatePicker={showDatePicker}
-                  />
-                  <MyTextInput
-                    label="Password"
-                    icon="lock"
-                    placeholder="* * * * * * * *"
-                    placeholderTextColor={darkLight}
-                    onChangeText={handleChange("password")}
-                    onBlur={handleBlur("password")}
-                    value={values.password}
-                    secureTextEntry={hidePassword}
-                    isPassword={true}
-                    hidePassword={hidePassword}
-                    setHidePassword={setHidePassword}
-                  />
-                  <MyTextInput
-                    label="Confirm Password"
-                    icon="lock"
-                    placeholder="* * * * * * * *"
-                    placeholderTextColor={darkLight}
-                    onChangeText={handleChange("confirmPassword")}
-                    onBlur={handleBlur("confirmPassword")}
-                    value={values.confirmPassword}
-                    secureTextEntry={hidePassword}
-                    isPassword={true}
-                    hidePassword={hidePassword}
-                    setHidePassword={setHidePassword}
-                  />
-
-                  <MsgBox>...</MsgBox>
-                  <StyledButton onPress={handleSubmit}>
-                    <ButtonText>Register</ButtonText>
-                  </StyledButton>
-                  <Line />
-                  <ExtraView>
-                    <ExtraText>Already have an account? </ExtraText>
-                    <TextLink onPress={() => navigation.navigate("Login")}>
-                      <TextLinkContent>Login</TextLinkContent>
-                    </TextLink>
-                  </ExtraView>
-                </StyledFormArea>
-              )}
-            </Formik>
-          </InnerContainer>
-        </ImageBackground>
-      </StyledContainer>
-    </KeyboardAvoidingWrapper>
-  );
-};
-
-const MyTextInput = ({
-  label,
-  icon,
-  isPassword,
-  hidePassword,
-  setHidePassword,
-  isDate,
-  showDatePicker,
-  ...props
-}) => {
-  return (
-    <View>
-      <LeftIcon>
-        <Octicons name={icon} size={30} color="red" />
-      </LeftIcon>
-      <StyledInputLabel>{label}</StyledInputLabel>
-
-      {isDate && (
-        <TouchableOpacity onPress={showDatePicker}>
-          <StyledTextInput {...props} pointerEvents="none" />
-          {/* <Text>Enter you BOD</Text> */}
-        </TouchableOpacity>
-      )}
-
-      {!isDate && <StyledTextInput {...props} />}
-
-      {isPassword && (
-        <RightIcon
-          onPress={() => {
-            setHidePassword(!hidePassword);
+    <View style={{ flex: 1, backgroundColor: "black" }}>
+      <View style={{ alignSelf: "center", marginTop: 100 }}>
+        <ProgressBar progress={0.5} width={250} height={25} borderRadius={20} />
+      </View>
+      <View style={{ alignSelf: "center", marginTop: 75 }}>
+        <Text style={{ fontFamily: "System", fontSize: 20, color: "white" }}>
+          Create an account
+        </Text>
+      </View>
+      <View
+        style={{
+          backgroundColor: "white",
+          alignSelf: "center",
+          width: 300,
+          padding: 12,
+          borderRadius: 25,
+          marginTop: 10,
+          marginTop: 25,
+          flexDirection: "row",
+        }}
+      >
+        <TextInput
+          style={{
+            fontSize: 17,
+            textAlign: "left",
+            color: "black",
+            fontFamily: "System",
+          }}
+          placeholder="Name"
+          placeholderTextColor={"lightgrey"}
+        />
+        <LottieView
+          source={require("../assets/22146-progress-bar-and-task-completion.json")}
+          autoPlay
+          loop
+          style={{ height: 25, alignSelf: "center" }}
+          speed={0}
+          left={100}
+        />
+      </View>
+      <View
+        style={{
+          backgroundColor: "white",
+          alignSelf: "center",
+          width: 300,
+          padding: 12,
+          borderRadius: 25,
+          marginTop: 10,
+          marginTop: 10,
+          flexDirection: "row",
+        }}
+      >
+        <TextInput
+          style={{
+            fontSize: 17,
+            textAlign: "left",
+            color: "black",
+            fontFamily: "System",
+          }}
+          placeholder="Email"
+          placeholderTextColor={"lightgrey"}
+        />
+        <LottieView
+          source={require("../assets/22146-progress-bar-and-task-completion.json")}
+          autoPlay
+          loop
+          style={{ height: 25, alignSelf: "center" }}
+          speed={0}
+          left={102}
+        />
+      </View>
+      <View
+        style={{
+          backgroundColor: "white",
+          alignSelf: "center",
+          width: 300,
+          padding: 12,
+          borderRadius: 25,
+          marginTop: 10,
+          marginTop: 10,
+          flexDirection: "row",
+        }}
+      >
+        <TextInput
+          style={{
+            fontSize: 17,
+            textAlign: "left",
+            color: "black",
+            fontFamily: "System",
+          }}
+          placeholder="Password"
+          placeholderTextColor={"lightgrey"}
+        />
+        <LottieView
+          source={require("../assets/22146-progress-bar-and-task-completion.json")}
+          autoPlay
+          loop
+          style={{ height: 25, alignSelf: "center" }}
+          speed={0}
+          left={86}
+        />
+      </View>
+      <View
+        style={{
+          backgroundColor: "white",
+          alignSelf: "center",
+          width: 300,
+          padding: 12,
+          borderRadius: 25,
+          marginTop: 10,
+          marginTop: 10,
+          flexDirection: "row",
+        }}
+      >
+        <TextInput
+          style={{
+            fontSize: 17,
+            textAlign: "left",
+            color: "black",
+            fontFamily: "System",
+          }}
+          placeholder="Confirm Password"
+          placeholderTextColor={"lightgrey"}
+        />
+        <LottieView
+          source={require("../assets/22146-progress-bar-and-task-completion.json")}
+          autoPlay
+          loop
+          style={{ height: 25, alignSelf: "center" }}
+          speed={0}
+          left={53}
+        />
+      </View>
+      <View style={{ flexDirection: "row", alignSelf: "center" }}>
+        <View
+          style={{
+            backgroundColor: "white",
+            justifyContent: "center",
+            alignSelf: "center",
+            width: 100,
+            padding: 15,
+            borderRadius: 25,
+            marginTop: 15,
+            marginRight: 15,
           }}
         >
-          <Ionicons
-            name={hidePassword ? "md-eye-off" : "md-eye"}
-            size={30}
-            color={darkLight}
+          <TextInput
+            style={{
+              fontSize: 17,
+              textAlign: "center",
+              color: "black",
+              fontFamily: "System",
+            }}
+            placeholder="Age"
+            placeholderTextColor={"lightgrey"}
           />
-        </RightIcon>
-      )}
+        </View>
+        <View
+          style={{
+            backgroundColor: "white",
+            justifyContent: "center",
+            alignSelf: "center",
+            width: 100,
+            padding: 15,
+            borderRadius: 25,
+            marginTop: 15,
+            marginLeft: 15,
+          }}
+        >
+          <TextInput
+            style={{
+              fontSize: 17,
+              textAlign: "center",
+              color: "black",
+              fontFamily: "System",
+            }}
+            placeholder="Weight"
+            placeholderTextColor={"lightgrey"}
+          />
+        </View>
+      </View>
+      <View
+        style={{
+          backgroundColor: "white",
+          justifyContent: "center",
+          alignContent: "center",
+          alignSelf: "center",
+          width: 300,
+          height: 50,
+          borderRadius: 25,
+          marginTop: 17,
+          backgroundColor: "navy",
+        }}
+      >
+        <Button
+          title="Create an Account"
+          onPress={() => navigation.navigate("Workouts")}
+          color="white"
+        />
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: 5,
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 17,
+            color: "grey",
+            fontFamily: "System",
+          }}
+        >
+          Already have an account?
+        </Text>
+        <Button
+          title="Sign in"
+          color="lightblue"
+          onPress={() => navigation.navigate("Login")}
+        />
+      </View>
     </View>
   );
 };

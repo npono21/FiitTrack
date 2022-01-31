@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Colors } from "../../components/styles";
+import { Colors } from "../../components/stylesLoginRegister";
 const { primary, tertiary } = Colors;
 
 //React Navigation
@@ -8,6 +8,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 //Importing screens for Navigation.
+import Splash from "../Splash";
+import LandingPage from "../LandingPage";
 import Login from "../Login";
 import Signup from "../Signup";
 import Workouts from "../Workouts";
@@ -22,7 +24,7 @@ const RootStack = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Login"
+        initialRouteName="Signup"
       >
         <Stack.Screen
           options={{ headerTintColor: primary }}
@@ -43,6 +45,16 @@ const RootStack = () => {
           options={{ headerTintColor: primary }}
           name="Measurements"
           component={Measurements}
+        />
+        <Stack.Screen
+          options={{ headerTintColor: primary }}
+          name="Splash"
+          component={Splash}
+        />
+        <Stack.Screen
+          options={{ headerTintColor: primary }}
+          name="LandingPage"
+          component={LandingPage}
         />
       </Stack.Navigator>
     </NavigationContainer>
