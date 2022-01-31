@@ -48,18 +48,13 @@ const Measurements = ({ navigation }) => {
   const [neck, setNeck] = useState("");
 
   return (
-    <ImageBackground
-      blurRadius={100}
-      resizeMode="cover"
-      source={require("../assets/firstScreen.jpg")}
-      style={commonAppStyles.image}
-    >
+    <View style={{ flex: 1, backgroundColor: "black" }}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View>
           <View style={{ marginTop: 50 }}>
             <Text
               style={{
-                fontSize: 45,
+                fontSize: 40,
                 textAlign: "center",
                 fontWeight: "bold",
                 color: "white",
@@ -174,16 +169,16 @@ const Measurements = ({ navigation }) => {
             <AntDesign
               name="home"
               size={45}
-              color="white"
+              color="black"
               onPress={() => navigation.navigate("Workouts")}
             />
-            <TouchableOpacity style={commonAppStyles.measurementsButton}>
-              <AntDesign name="barschart" size={45} color="white" />
-            </TouchableOpacity>
+            {/* <TouchableOpacity style={commonAppStyles.measurementsButton}> */}
+            <AntDesign name="barschart" size={45} color="black" />
+            {/* </TouchableOpacity> */}
           </View>
         </View>
       </View>
-    </ImageBackground>
+    </View>
   );
 };
 export default Measurements;

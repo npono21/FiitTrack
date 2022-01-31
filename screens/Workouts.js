@@ -112,15 +112,20 @@ const Workouts = ({ navigation }) => {
   }, []);
 
   return (
-    <ImageBackground
-      blurRadius={10}
-      resizeMode="cover"
-      source={require("../assets/firstScreen.jpg")}
-      style={commonAppStyles.image}
-    >
+    <View style={{ flex: 1, backgroundColor: "black" }}>
       <ScrollView>
         <View style={commonAppStyles.styledContainer}>
-          <Text style={commonAppStyles.appPageTitle}>FiitTrack</Text>
+          <Text
+            style={{
+              color: "white",
+              fontFamily: "System",
+              fontSize: 40,
+              fontWeight: "bold",
+              alignSelf: "center",
+            }}
+          >
+            Workouts
+          </Text>
           <View
             style={{
               flexDirection: "row",
@@ -249,20 +254,20 @@ const Workouts = ({ navigation }) => {
           })}
         </View>
       </ScrollView>
-      <View>
+      <View style={{ marginBottom: 20 }}>
         <View style={commonAppStyles.menuBarStyle}>
           <View style={commonAppStyles.menuIconStyle}>
-            <AntDesign name="home" size={45} color="red" />
+            <AntDesign name="home" size={45} color="black" />
             <TouchableOpacity
               style={commonAppStyles.measurementsButton}
               onPress={() => navigation.navigate("Measurements")}
             >
-              <AntDesign name="barschart" size={45} color="red" />
+              <AntDesign name="barschart" size={45} color="black" />
             </TouchableOpacity>
           </View>
         </View>
       </View>
-    </ImageBackground>
+    </View>
   );
 };
 

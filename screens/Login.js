@@ -7,7 +7,12 @@ import {
   Text,
   Button,
   TextInput,
+  TouchableWithoutFeedback,
+  TouchableWithoutFeedbackBase,
+  Keyboard,
 } from "react-native";
+
+import { AntDesign } from "@expo/vector-icons";
 
 const Login = ({ navigation }) => {
   return (
@@ -16,7 +21,7 @@ const Login = ({ navigation }) => {
         <Text
           style={{
             fontWeight: "bold",
-            fontSize: 55,
+            fontSize: 70,
             fontFamily: "System",
             color: "white",
           }}
@@ -33,7 +38,7 @@ const Login = ({ navigation }) => {
           padding: 15,
           borderRadius: 25,
           marginTop: 10,
-          marginTop: 75,
+          marginTop: 100,
         }}
       >
         <TextInput
@@ -94,9 +99,42 @@ const Login = ({ navigation }) => {
       </View>
       <View
         style={{
+          justifyContent: "center",
+          backgroundColor: "white",
+          width: 225,
+          alignSelf: "center",
+          borderRadius: 5,
+          flexDirection: "row",
+          alignItems: "center",
+          marginTop: 50,
+        }}
+      >
+        <AntDesign name="apple1" size={20} color="black" />
+        <Button title="Sign in with Apple" color="black"></Button>
+      </View>
+      <View
+        style={{
+          justifyContent: "center",
+          backgroundColor: "white",
+          width: 225,
+          alignSelf: "center",
+          borderRadius: 5,
+          flexDirection: "row",
+          alignItems: "center",
+          marginTop: 10,
+        }}
+      >
+        <View style={{ marginRight: 15 }}>
+          <AntDesign name="google" size={20} color="black" />
+        </View>
+        <Button title="Sign in with Google" color="grey"></Button>
+      </View>
+      <View
+        style={{
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
+          marginTop: 20,
         }}
       >
         <Text

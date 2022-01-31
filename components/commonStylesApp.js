@@ -44,7 +44,7 @@ const commonAppStyles = StyleSheet.create({
   styledContainer: {
     flex: 1,
     height: "100%",
-    paddingTop: 25,
+    paddingTop: 50,
   },
   pageTitleContainer: {
     flexDirection: "row",
@@ -56,7 +56,7 @@ const commonAppStyles = StyleSheet.create({
     zIndex: 1,
   },
   menuBarStyle: {
-    backgroundColor: "navy",
+    backgroundColor: "white",
     borderRadius: 15,
     marginTop: 25,
     alignSelf: "center",

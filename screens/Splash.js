@@ -32,7 +32,7 @@ const Splash = ({ navigation }) => {
           source={require("../assets/94295-loading-animation.json")}
           autoPlay
           loop
-          style={{ height: 50, alignSelf: "center" }}
+          style={{ height: 30, alignSelf: "center" }}
         />
       </View>
     </View>

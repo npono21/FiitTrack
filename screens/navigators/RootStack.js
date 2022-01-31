@@ -24,7 +24,7 @@ const RootStack = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Login"
+        initialRouteName="Signup"
       >
         <Stack.Screen
           options={{ headerTintColor: primary }}

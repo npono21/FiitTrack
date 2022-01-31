@@ -51,7 +51,7 @@ const LandingPage = ({ navigation }) => {
             }}
           >
             <Button
-              title="Login"
+              title="Sign in"
               onPress={() => navigation.navigate("Login")}
             />
           </View>
