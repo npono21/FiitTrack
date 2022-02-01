@@ -11,6 +11,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Splash from "../Splash";
 import LandingPage from "../LandingPage";
 import Login from "../Login";
+import ForgotPassword from "../ForgotPassword";
 import Signup from "../Signup";
 import Workouts from "../Workouts";
 import Measurements from "../Measurements";
@@ -24,7 +25,7 @@ const RootStack = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Signup"
+        initialRouteName="ForgotPassword"
       >
         <Stack.Screen
           options={{ headerTintColor: primary }}
@@ -55,6 +56,11 @@ const RootStack = () => {
           options={{ headerTintColor: primary }}
           name="LandingPage"
           component={LandingPage}
+        />
+        <Stack.Screen
+          options={{ headerTintColor: primary }}
+          name="ForgotPassword"
+          component={ForgotPassword}
         />
       </Stack.Navigator>
     </NavigationContainer>
