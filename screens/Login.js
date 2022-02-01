@@ -98,7 +98,7 @@ const Login = ({ navigation }) => {
         <Button
           title="Forgot Password?"
           color="white"
-          onPress={() => navigation.navigate("ForgotPassword")}
+          onPress={() => navigation.navigate("ForgotPassword1")}
         />
       </View>
       <View
