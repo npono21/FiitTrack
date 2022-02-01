@@ -36,7 +36,7 @@ const Login = ({ navigation }) => {
           alignSelf: "center",
           width: 300,
           padding: 15,
-          borderRadius: 25,
+          borderRadius: 15,
           marginTop: 10,
           marginTop: 100,
         }}
@@ -59,7 +59,7 @@ const Login = ({ navigation }) => {
           alignSelf: "center",
           width: 300,
           padding: 15,
-          borderRadius: 25,
+          borderRadius: 15,
           marginTop: 17,
         }}
       >
@@ -82,7 +82,7 @@ const Login = ({ navigation }) => {
           alignSelf: "center",
           width: 300,
           height: 50,
-          borderRadius: 25,
+          borderRadius: 15,
           marginTop: 17,
           backgroundColor: "navy",
         }}
@@ -95,7 +95,11 @@ const Login = ({ navigation }) => {
       </View>
       <View></View>
       <View>
-        <Button title="Forgot Password?" color="white" />
+        <Button
+          title="Forgot Password?"
+          color="white"
+          onPress={() => navigation.navigate("ForgotPassword")}
+        />
       </View>
       <View
         style={{
