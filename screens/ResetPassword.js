@@ -7,7 +7,7 @@ import LottieView from "lottie-react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const ForgotPassword = ({ navigation }) => {
+const ResetPassword = ({ navigation }) => {
   return (
     <View style={{ backgroundColor: "black", flex: 1 }}>
       <View
@@ -28,7 +28,7 @@ const ForgotPassword = ({ navigation }) => {
           <Button
             title="Back"
             color="white"
-            onPress={() => navigation.navigate("Login")}
+            onPress={() => navigation.navigate("ForgotPassword1")}
           >
             {"  "}
             Back
@@ -39,22 +39,21 @@ const ForgotPassword = ({ navigation }) => {
         <Text
           style={{
             fontFamily: "System",
-            fontSize: 35,
+            fontSize: 30,
             fontWeight: "bold",
             color: "white",
           }}
         >
-          Reset Password
+          Create New Password
         </Text>
         <View style={{ marginTop: 20 }}>
           <Text style={{ fontSize: 20, fontFamily: "System", color: "white" }}>
-            Enter the email associated with your account and we'll send an email
-            with instructions to reset your password.
+            Your new password must be different from previous used passwords.
           </Text>
         </View>
-        <View style={{ marginTop: 25 }}>
+        <View style={{ marginTop: 25, marginBottom: 2 }}>
           <Text style={{ fontFamily: "System", fontSize: 15, color: "grey" }}>
-            Email Address
+            Password
           </Text>
         </View>
         <View
@@ -73,30 +72,60 @@ const ForgotPassword = ({ navigation }) => {
               color: "black",
               fontFamily: "System",
             }}
-            placeholder="Email Address"
             placeholderTextColor={"lightgrey"}
+            secureTextEntry={true}
           />
+        </View>
+        <View style={{ marginTop: 2 }}>
+          <Text style={{ fontFamily: "System", fontSize: 15, color: "grey" }}>
+            Must be atleast 8 characters
+          </Text>
+        </View>
+        <View style={{ marginTop: 15, marginBottom: 2 }}>
+          <Text style={{ fontFamily: "System", fontSize: 15, color: "grey" }}>
+            Confirm Password
+          </Text>
         </View>
         <View
           style={{
             backgroundColor: "white",
+            width: "93%",
+            padding: 15,
+            borderRadius: 15,
+            marginTop: 2,
+          }}
+        >
+          <TextInput
+            style={{
+              fontSize: 17,
+              textAlign: "left",
+              color: "black",
+              fontFamily: "System",
+            }}
+            placeholderTextColor={"lightgrey"}
+            secureTextEntry={true}
+          />
+        </View>
+        <View style={{ marginTop: 2 }}>
+          <Text style={{ fontFamily: "System", fontSize: 15, color: "grey" }}>
+            Both passwords must match.
+          </Text>
+        </View>
+        <View
+          style={{
             justifyContent: "center",
             width: 300,
             width: "93%",
             height: 50,
             borderRadius: 15,
-            marginTop: 15,
+            marginTop: 30,
             backgroundColor: "navy",
           }}
         >
-          <Button
-            title="Send Instructions"
-            onPress={() => navigation.navigate("Workouts")}
-            color="white"
-          />
+          <Button title="Reset Password" color="white" />
         </View>
       </View>
     </View>
   );
 };
-export default ForgotPassword;
+export default ResetPassword;
