@@ -1,6 +1,5 @@
 import React, { useState, useReducer, useEffect } from "react";
 import {
-  ImageBackground,
   View,
   Text,
   TextInput,
@@ -12,6 +11,8 @@ import {
 } from "react-native";
 
 import { AntDesign } from "@expo/vector-icons";
+
+import { auth } from "../firebase";
 
 import DropDownPicker from "react-native-dropdown-picker";
 
@@ -110,6 +111,15 @@ const Workouts = ({ navigation }) => {
     var year = new Date().getFullYear();
     setCurrentDate(date + "-" + month + "-" + year);
   }, []);
+
+  const handleSignOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        navigation.navigate("Login");
+      })
+      .catch((error) => alert(error.message));
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: "black" }}>
@@ -265,6 +275,7 @@ const Workouts = ({ navigation }) => {
               <AntDesign name="barschart" size={45} color="black" />
             </TouchableOpacity>
           </View>
+          <Button title="Sign Out" onPress={handleSignOut} />
         </View>
       </View>
     </View>
