@@ -8,12 +8,98 @@ import {
   Button,
   KeyboardAvoidingView,
   Keyboard,
+  StyleSheet,
 } from "react-native";
 
 import { AntDesign } from "@expo/vector-icons";
 
 import { auth } from "../firebase";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+
+const styles = StyleSheet.create({
+  nameInputContainer: {
+    backgroundColor: "white",
+    alignSelf: "center",
+    width: 300,
+    padding: 12,
+    borderRadius: 15,
+    marginTop: 10,
+    marginTop: 30,
+    flexDirection: "row",
+  },
+  textInput: {
+    fontSize: 17,
+    textAlign: "left",
+    color: "black",
+    fontFamily: "System",
+    width: 250,
+  },
+  emailInputContainer: {
+    backgroundColor: "white",
+    alignSelf: "center",
+    width: 300,
+    padding: 12,
+    borderRadius: 15,
+    marginTop: 15,
+    flexDirection: "row",
+  },
+  passwordInputContainer: {
+    backgroundColor: "white",
+    alignSelf: "center",
+    width: 300,
+    padding: 12,
+    borderRadius: 15,
+    marginTop: 15,
+    flexDirection: "row",
+  },
+  ageInputContainer: {
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignSelf: "center",
+    width: 100,
+    padding: 15,
+    borderRadius: 15,
+    marginTop: 15,
+  },
+  ageTextInput: {
+    fontSize: 17,
+    textAlign: "center",
+    color: "black",
+    fontFamily: "System",
+  },
+  weightInputContainer: {
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignSelf: "center",
+    width: 100,
+    padding: 15,
+    borderRadius: 15,
+    marginTop: 15,
+    marginLeft: 15,
+  },
+  buttonContainer: {
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignContent: "center",
+    alignSelf: "center",
+    width: 300,
+    height: 50,
+    borderRadius: 15,
+    marginTop: 17,
+    backgroundColor: "navy",
+  },
+  textView: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 5,
+  },
+  textStyle: {
+    fontSize: 17,
+    color: "grey",
+    fontFamily: "System",
+  },
+});
 
 const Signup = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -55,56 +141,23 @@ const Signup = ({ navigation }) => {
             Create an account
           </Text>
         </View>
-        <View
-          style={{
-            backgroundColor: "white",
-            alignSelf: "center",
-            width: 300,
-            padding: 12,
-            borderRadius: 15,
-            marginTop: 10,
-            marginTop: 30,
-            flexDirection: "row",
-          }}
-        >
+        <View style={styles.nameInputContainer}>
           <View style={{ paddingRight: 10 }}>
             <AntDesign name="user" size={20} color="black" />
           </View>
           <TextInput
-            style={{
-              fontSize: 17,
-              textAlign: "left",
-              color: "black",
-              fontFamily: "System",
-              width: 250,
-            }}
+            style={styles.textInput}
             placeholder="Name"
             placeholderTextColor={"lightgrey"}
             textContentType="name"
           />
         </View>
-        <View
-          style={{
-            backgroundColor: "white",
-            alignSelf: "center",
-            width: 300,
-            padding: 12,
-            borderRadius: 15,
-            marginTop: 15,
-            flexDirection: "row",
-          }}
-        >
+        <View style={styles.emailInputContainer}>
           <View style={{ paddingRight: 10 }}>
             <AntDesign name="mail" size={20} color="black" />
           </View>
           <TextInput
-            style={{
-              fontSize: 17,
-              textAlign: "left",
-              color: "black",
-              fontFamily: "System",
-              width: 250,
-            }}
+            style={styles.textInput}
             placeholder="Email"
             placeholderTextColor={"lightgrey"}
             textContentType="emailAddress"
@@ -112,28 +165,12 @@ const Signup = ({ navigation }) => {
             value={email}
           />
         </View>
-        <View
-          style={{
-            backgroundColor: "white",
-            alignSelf: "center",
-            width: 300,
-            padding: 12,
-            borderRadius: 15,
-            marginTop: 15,
-            flexDirection: "row",
-          }}
-        >
+        <View style={styles.passwordInputContainer}>
           <View style={{ paddingRight: 10 }}>
             <AntDesign name="lock" size={20} color="black" />
           </View>
           <TextInput
-            style={{
-              fontSize: 17,
-              textAlign: "left",
-              color: "black",
-              fontFamily: "System",
-              width: 250,
-            }}
+            style={styles.textInput}
             placeholder="Password"
             placeholderTextColor={"lightgrey"}
             textContentType="password"
@@ -142,28 +179,12 @@ const Signup = ({ navigation }) => {
             value={password}
           />
         </View>
-        <View
-          style={{
-            backgroundColor: "white",
-            alignSelf: "center",
-            width: 300,
-            padding: 12,
-            borderRadius: 15,
-            marginTop: 15,
-            flexDirection: "row",
-          }}
-        >
+        <View style={styles.passwordInputContainer}>
           <View style={{ paddingRight: 10 }}>
             <AntDesign name="lock" size={20} color="black" />
           </View>
           <TextInput
-            style={{
-              fontSize: 17,
-              textAlign: "left",
-              color: "black",
-              fontFamily: "System",
-              width: 250,
-            }}
+            style={styles.textInput}
             placeholder="Confirm Password"
             placeholderTextColor={"lightgrey"}
             textContentType="password"
@@ -171,89 +192,31 @@ const Signup = ({ navigation }) => {
           />
         </View>
         <View style={{ flexDirection: "row", alignSelf: "center" }}>
-          <View
-            style={{
-              backgroundColor: "white",
-              justifyContent: "center",
-              alignSelf: "center",
-              width: 100,
-              padding: 15,
-              borderRadius: 15,
-              marginTop: 15,
-            }}
-          >
+          <View style={styles.ageInputContainer}>
             <TextInput
-              style={{
-                fontSize: 17,
-                textAlign: "center",
-                color: "black",
-                fontFamily: "System",
-              }}
+              style={styles.ageTextInput}
               placeholder="Age"
               placeholderTextColor={"lightgrey"}
             />
           </View>
-          <View
-            style={{
-              backgroundColor: "white",
-              justifyContent: "center",
-              alignSelf: "center",
-              width: 100,
-              padding: 15,
-              borderRadius: 15,
-              marginTop: 15,
-              marginLeft: 15,
-            }}
-          >
+          <View style={styles.weightInputContainer}>
             <TextInput
-              style={{
-                fontSize: 17,
-                textAlign: "center",
-                color: "black",
-                fontFamily: "System",
-              }}
+              style={styles.ageTextInput}
               placeholder="Weight"
               placeholderTextColor={"lightgrey"}
             />
           </View>
         </View>
       </TouchableWithoutFeedback>
-      <View
-        style={{
-          backgroundColor: "white",
-          justifyContent: "center",
-          alignContent: "center",
-          alignSelf: "center",
-          width: 300,
-          height: 50,
-          borderRadius: 15,
-          marginTop: 17,
-          backgroundColor: "navy",
-        }}
-      >
+      <View style={styles.buttonContainer}>
         <Button
           title="Create an Account"
           onPress={handleSignup}
           color="white"
         />
       </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: 5,
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 17,
-            color: "grey",
-            fontFamily: "System",
-          }}
-        >
-          Already have an account?
-        </Text>
+      <View style={styles.textView}>
+        <Text style={styles.textStyle}>Already have an account?</Text>
         <Button
           title="Sign in"
           color="lightblue"
