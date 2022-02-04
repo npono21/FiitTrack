@@ -49,135 +49,51 @@ const Measurements = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: "black" }}>
+      <View style={commonAppStyles.styledContainer}>
+        <Text
+          style={{
+            color: "white",
+            fontFamily: "System",
+            fontSize: 40,
+            fontWeight: "bold",
+            alignSelf: "center",
+          }}
+        >
+          Profile
+        </Text>
+      </View>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View>
-          <View style={{ marginTop: 50 }}>
-            <Text
-              style={{
-                fontSize: 40,
-                textAlign: "center",
-                fontWeight: "bold",
-                color: "white",
-                fontFamily: "System",
-              }}
-            >
-              Profile
-            </Text>
-          </View>
+        <View
+          style={{
+            width: "100%",
+            backgroundColor: "white",
+            padding: 15,
+            height: 75,
+            position: "absolute",
+            bottom: 0,
+          }}
+        >
           <View
             style={{
-              height: 120,
-              width: 120,
-              borderRadius: 60,
-              borderWidth: 3,
-              borderColor: "navy",
-              backgroundColor: "lightgray",
-              alignSelf: "center",
-              marginTop: 10,
-              justifyContent: "center",
-              alignItems: "center",
+              flexDirection: "row",
+              marginTop: 20,
+              position: "absolute",
             }}
           >
-            <TouchableOpacity>
-              <AntDesign name="pluscircle" size={50} color="black" />
-            </TouchableOpacity>
-          </View>
-          <View style={{ paddingBottom: 35, paddingTop: 5 }}>
-            <TextInput
-              style={{
-                fontSize: 25,
-                textAlign: "center",
-                color: "white",
-                fontFamily: "System",
-              }}
-              placeholder="Enter Name"
-              placeholderTextColor={"white"}
-            />
-          </View>
-          <View
-            style={{
-              alignSelf: "center",
-            }}
-          >
-            <View
-              style={{
-                height: 150,
-                width: 325,
-                borderRadius: 15,
-                backgroundColor: "white",
-                padding: 10,
-                borderWidth: 3,
-                borderColor: "navy",
-              }}
-            >
-              <View
-                style={{
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 30,
-                    fontWeight: "bold",
-                    color: "black",
-                    fontFamily: "System",
-                  }}
-                >
-                  Weight
-                </Text>
-                <AntDesign name="pluscircle" size={25} color="black" />
-              </View>
+            <View style={{ marginLeft: 75 }}>
+              <AntDesign
+                name="home"
+                size={40}
+                color="grey"
+                onPress={() => navigation.navigate("Workouts")}
+              />
             </View>
-            <View
-              style={{
-                height: 270,
-                width: 325,
-                borderRadius: 15,
-                backgroundColor: "white",
-                padding: 10,
-                marginTop: 10,
-                borderWidth: 3,
-                borderColor: "navy",
-              }}
-            >
-              <View
-                style={{
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 30,
-                    fontWeight: "bold",
-                    color: "black",
-                    fontFamily: "System",
-                  }}
-                >
-                  Measurements
-                </Text>
-                <AntDesign name="pluscircle" size={25} color="black" />
-              </View>
+            <View style={{ marginLeft: 160 }}>
+              <AntDesign name="user" size={40} color="grey" />
             </View>
           </View>
         </View>
       </TouchableWithoutFeedback>
-      <View>
-        <View style={commonAppStyles.menuBarStyle}>
-          <View style={commonAppStyles.menuIconStyle}>
-            <AntDesign
-              name="home"
-              size={45}
-              color="black"
-              onPress={() => navigation.navigate("Workouts")}
-            />
-            {/* <TouchableOpacity style={commonAppStyles.measurementsButton}> */}
-            <AntDesign name="barschart" size={45} color="black" />
-            {/* </TouchableOpacity> */}
-          </View>
-        </View>
-      </View>
     </View>
   );
 };

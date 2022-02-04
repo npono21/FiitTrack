@@ -213,6 +213,7 @@ const Signup = ({ navigation }) => {
           title="Create an Account"
           onPress={handleSignup}
           color="white"
+          onPress={() => navigation.navigate("Workouts")}
         />
       </View>
       <View style={styles.textView}>

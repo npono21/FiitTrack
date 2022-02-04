@@ -27,7 +27,7 @@ const commonAppStyles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     color: "rgba(255, 255, 255, 1)",
-    marginTop: 45,
+    marginTop: 75,
     fontFamily: "System",
   },
   subtitleStyle: {

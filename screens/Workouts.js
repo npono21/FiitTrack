@@ -8,6 +8,8 @@ import {
   ScrollView,
   Alert,
   TouchableOpacity,
+  Keyboard,
+  KeyboardAvoidingView,
 } from "react-native";
 
 import { AntDesign } from "@expo/vector-icons";
@@ -24,6 +26,7 @@ import {
 } from "../components/stylesWorkouts";
 
 import { commonAppStyles } from "../components/commonStylesApp";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 const initialWorkoutsList = [];
 
@@ -123,19 +126,21 @@ const Workouts = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: "black" }}>
+      <View style={commonAppStyles.styledContainer}>
+        <Text
+          style={{
+            color: "white",
+            fontFamily: "System",
+            fontSize: 40,
+            fontWeight: "bold",
+            alignSelf: "center",
+          }}
+        >
+          Workouts
+        </Text>
+      </View>
       <ScrollView>
-        <View style={commonAppStyles.styledContainer}>
-          <Text
-            style={{
-              color: "white",
-              fontFamily: "System",
-              fontSize: 40,
-              fontWeight: "bold",
-              alignSelf: "center",
-            }}
-          >
-            Workouts
-          </Text>
+        <View>
           <View
             style={{
               flexDirection: "row",
@@ -215,15 +220,6 @@ const Workouts = ({ navigation }) => {
                 </View>
               </View>
             </Modal>
-            <View style={commonAppStyles.workoutsSubtitleContainer}>
-              <Text style={commonAppStyles.subtitleStyle}>Workouts</Text>
-            </View>
-            <TouchableOpacity
-              style={styles.deleteAddIcon}
-              onPress={handleAddIconClick}
-            >
-              <AntDesign name="pluscircle" size={25} color="red" />
-            </TouchableOpacity>
           </View>
           {workoutsList.map((obj, index) => {
             return (
@@ -264,18 +260,51 @@ const Workouts = ({ navigation }) => {
           })}
         </View>
       </ScrollView>
-      <View style={{ marginBottom: 20 }}>
-        <View style={commonAppStyles.menuBarStyle}>
-          <View style={commonAppStyles.menuIconStyle}>
-            <AntDesign name="home" size={45} color="black" />
-            <TouchableOpacity
-              style={commonAppStyles.measurementsButton}
-              onPress={() => navigation.navigate("Measurements")}
-            >
-              <AntDesign name="barschart" size={45} color="black" />
-            </TouchableOpacity>
+      <View
+        style={{
+          width: "100%",
+          backgroundColor: "white",
+          padding: 15,
+          height: 75,
+        }}
+      >
+        <View
+          style={{
+            backgroundColor: "blue",
+            bottom: 50,
+            height: 66,
+            width: 66,
+            borderRadius: 33,
+            alignSelf: "center",
+            zIndex: 1,
+            padding: 13,
+          }}
+        >
+          <AntDesign
+            name="plus"
+            size={40}
+            color="white"
+            onPress={handleAddIconClick}
+          />
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            marginTop: 20,
+            position: "absolute",
+          }}
+        >
+          <View style={{ marginLeft: 75 }}>
+            <AntDesign name="home" size={40} color="grey" />
           </View>
-          <Button title="Sign Out" onPress={handleSignOut} />
+          <View style={{ marginLeft: 160 }}>
+            <AntDesign
+              name="user"
+              size={40}
+              color="grey"
+              onPress={() => navigation.navigate("Measurements")}
+            />
+          </View>
         </View>
       </View>
     </View>
